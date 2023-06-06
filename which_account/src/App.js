@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Login from './Components/Login/Login';
+import { useState } from 'react';
 
 function App() {
 
@@ -27,9 +28,12 @@ function App() {
     },
   ];
 
+  const [view, setView] = useState("login");
+
   return (
     <div className="App">
-      <Login accounts={accounts} />
+      {view === "login" && <Login accounts={accounts} />}
+      {/* {view === "accounts" && <Accounts />} */}
     </div>
   );
 }
