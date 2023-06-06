@@ -1,23 +1,35 @@
 import logo from './logo.svg';
 import './App.css';
+import Login from './Components/Login/Login';
 
 function App() {
+
+  const accounts = [
+    {
+      username: "Dennis@paddyspub.com",
+      password: "password"
+    },
+    {
+      username: "Charlie@paddyspub.com",
+      password: "pass"
+    },
+    {
+      username: "Frank@paddyspub.com",
+      password: "pass"
+    },
+    {
+      username: "Dee@paddyspub.com",
+      password: "password"
+    },
+    {
+      username: "Mac@paddyspub.com",
+      password: "password"
+    },
+  ];
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Login accounts={accounts} />
     </div>
   );
 }
