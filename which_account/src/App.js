@@ -34,7 +34,6 @@ function App() {
   const handleLogin = (e, pass) => {
     e.preventDefault();
     let possibleAccounts = accounts.filter((element) => element.password === pass)
-    console.log(possibleAccounts)
     setPossible(possibleAccounts);
     setView("accounts");
     return possibleAccounts;
