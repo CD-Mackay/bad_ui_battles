@@ -1,0 +1,19 @@
+.account-item {
+  display: flex;
+  justify-content: space-evenly;
+  width: 300px;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.account-item:hover {
+  background-color: pink;
+}
+
+.account-button {
+  height: 20px;
+  align-self: center;
+  margin: 5px;
+}
