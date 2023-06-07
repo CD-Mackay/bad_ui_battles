@@ -21,10 +21,10 @@ const Accounts = ({ accounts, setView, allAccounts }) => {
         </h3>
       )}
       {accounts.length === 0 && (
-        <h3>
+        <p>
           That password is not linked to any accounts, please select which is
           yours to update password
-        </h3>
+        </p>
       )}
       {accounts.length > 0 &&
         accounts.map((element, index) => {
