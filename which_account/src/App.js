@@ -44,7 +44,7 @@ function App() {
   return (
     <div className="App">
       {view === "login" && <Login accounts={accounts} handleLogin={handleLogin} />}
-      {view === "accounts" && <Accounts accounts={possible} setView={setView} />}
+      {view === "accounts" && <Accounts accounts={possible} allAccounts ={accounts} setView={setView} />}
       {view === "success" && <h2>You are now logged in!</h2>}
     </div>
   );
