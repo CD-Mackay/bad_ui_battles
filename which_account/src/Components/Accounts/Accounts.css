@@ -1,7 +1,7 @@
 .account-item {
   display: flex;
   justify-content: space-evenly;
-  width: 300px;
+  width: 320px;
   margin: 0 auto;
   margin-bottom: 5px;
   border: 1px solid black;
