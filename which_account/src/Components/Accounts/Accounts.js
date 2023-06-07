@@ -1,12 +1,12 @@
 import React from "react";
 import "./Accounts.css";
 
-const Accounts = ({ accounts }) => {
+const Accounts = ({ accounts, setView }) => {
   const AccountItem = ({ account }) => {
     return (
       <div className="account-item">
         <p>{account.username}</p>
-        <button className="account-button">Login!</button>
+        <button className="account-button" onClick={() => setView("success")}>Login!</button>
       </div>
     );
   };
