@@ -6,7 +6,7 @@ const Accounts = ({ accounts, setView, allAccounts }) => {
     return (
       <div className="account-item">
         <p>{account.username}</p>
-        <button className="account-button" onClick={() => setView("success")}>
+        <button className="account-button" onClick={() => setView(accounts.length === 0 ? "reset" : "success")}>
           {accounts.length === 0 ? "Reset Password" : "Login!"}
         </button>
       </div>

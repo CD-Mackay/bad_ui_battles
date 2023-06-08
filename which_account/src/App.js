@@ -3,6 +3,7 @@ import './App.css';
 import Login from './Components/Login/Login';
 import Accounts from './Components/Accounts/Accounts';
 import { useState } from 'react';
+import Reset from './Components/Reset/Reset';
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
       {view === "login" && <Login accounts={accounts} handleLogin={handleLogin} />}
       {view === "accounts" && <Accounts accounts={possible} allAccounts ={accounts} setView={setView} />}
       {view === "success" && <h2>You are now logged in!</h2>}
+      {view === "reset" && <Reset setView={setView} />}
     </div>
   );
 }
