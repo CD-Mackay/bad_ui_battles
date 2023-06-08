@@ -47,7 +47,7 @@ function App() {
       {view === "login" && <Login accounts={accounts} handleLogin={handleLogin} />}
       {view === "accounts" && <Accounts accounts={possible} allAccounts ={accounts} setView={setView} />}
       {view === "success" && <h2>You are now logged in!</h2>}
-      {view === "reset" && <Reset />}
+      {view === "reset" && <Reset setView={setView} />}
     </div>
   );
 }
