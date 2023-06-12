@@ -2,9 +2,11 @@ import logo from "./logo.svg";
 import "./App.css";
 import Login from "./Components/Login/Login";
 import Accounts from "./Components/Accounts/Accounts";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Reset from "./Components/Reset/Reset";
 import handleSubmit from "./handles/handles";
+import { firestore } from "./firebase_setup/firebase";
+import { doc, getDocs, collection} from 'firebase/firestore';
 
 function App() {
   const [possible, setPossible] = useState([]);
@@ -45,12 +47,28 @@ function App() {
   };
 
   const [view, setView] = useState("login");
+  const [users, setUsers] = useState([]);
+
 
   const submithandler = (e) => {
     e.preventDefault()
     handleSubmit(dataRef.current.value)
     dataRef.current.value = ""
+  };
+
+  const getUsers = async () => {
+    // const response = firestore.collection('users');
+    //     const data = await response.get();
+    const data = await getDocs(collection(firestore, "users"));
+    let dataList = []
+    data.forEach((element) =>  dataList.push(element.data()));
+    console.log(dataList);
+    setUsers(dataList);
   }
+
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   return (
     <div className="App">
