@@ -1,16 +1,14 @@
 import "./App.css";
 import Login from "./Components/Login/Login";
 import Accounts from "./Components/Accounts/Accounts";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Reset from "./Components/Reset/Reset";
-import handleSubmit from "./handles/handles";
 import { firestore } from "./firebase_setup/firebase";
-import { getDocs, collection, addDoc } from "firebase/firestore";
+import { getDocs, collection } from "firebase/firestore";
 
 function App() {
   const [possible, setPossible] = useState([]);
 
-  const dataRef = useRef();
 
   const [view, setView] = useState("login");
   const [users, setUsers] = useState([]);
@@ -24,10 +22,6 @@ function App() {
     setPossible(possibleAccounts);
     setView("accounts");
     return possibleAccounts;
-  };
-
-  const submithandler = async (e) => {
-    e.preventDefault();  
   };
 
   const getUsers = async () => {
