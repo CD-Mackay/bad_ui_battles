@@ -14,6 +14,7 @@ function App() {
 
   const [view, setView] = useState("login");
   const [users, setUsers] = useState([]);
+  const [currentId, setCurrentId] = useState("");
 
   const handleLogin = (e, pass) => {
     e.preventDefault();
@@ -50,10 +51,11 @@ function App() {
           accounts={possible}
           allAccounts={users}
           setView={setView}
+          setCurrentId={setCurrentId}
         />
       )}
       {view === "success" && <h2>You are now logged in!</h2>}
-      {view === "reset" && <Reset setView={setView} />}
+      {view === "reset" && <Reset setView={setView} currentId={currentId} />}
     </div>
   );
 }

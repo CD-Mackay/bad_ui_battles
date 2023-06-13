@@ -1,12 +1,22 @@
 import React from "react";
 import "./Accounts.css";
 
-const Accounts = ({ accounts, setView, allAccounts }) => {
+const Accounts = ({ accounts, setView, allAccounts, setCurrentId }) => {
+
+ 
   const AccountItem = ({ account }) => {
+    const handlePassChange = () => {
+      setCurrentId(account.id);
+      setView("reset")
+    }
+
     return (
       <div className="account-item">
         <p>{account.data.name}</p>
-        <button className="account-button" onClick={() => setView(accounts.length === 0 ? "reset" : "success")}>
+        <button
+          className="account-button"
+          onClick={accounts.length === 0 ? handlePassChange() : setView("success")}
+        >
           {accounts.length === 0 ? "Reset Password" : "Login!"}
         </button>
       </div>
