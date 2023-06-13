@@ -5,39 +5,20 @@ import { useState, useRef, useEffect } from "react";
 import Reset from "./Components/Reset/Reset";
 import handleSubmit from "./handles/handles";
 import { firestore } from "./firebase_setup/firebase";
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, addDoc } from "firebase/firestore";
 
 function App() {
   const [possible, setPossible] = useState([]);
 
-  const accounts = [
-    {
-      username: "Dennis@paddyspub.com",
-      password: "password",
-    },
-    {
-      username: "Charlie@paddyspub.com",
-      password: "pass",
-    },
-    {
-      username: "Frank@paddyspub.com",
-      password: "pass",
-    },
-    {
-      username: "Dee@paddyspub.com",
-      password: "password",
-    },
-    {
-      username: "Mac@paddyspub.com",
-      password: "password",
-    },
-  ];
-
   const dataRef = useRef();
+
+  const [view, setView] = useState("login");
+  const [users, setUsers] = useState([]);
+  const [currentId, setCurrentId] = useState("");
 
   const handleLogin = (e, pass) => {
     e.preventDefault();
-    let possibleAccounts = accounts.filter(
+    let possibleAccounts = users.filter(
       (element) => element.password === pass
     );
     setPossible(possibleAccounts);
@@ -45,20 +26,14 @@ function App() {
     return possibleAccounts;
   };
 
-  const [view, setView] = useState("login");
-  const [users, setUsers] = useState([]);
-
-  const submithandler = (e) => {
-    e.preventDefault();
-    handleSubmit(dataRef.current.value);
-    dataRef.current.value = "";
+  const submithandler = async (e) => {
+    e.preventDefault();  
   };
 
   const getUsers = async () => {
     const data = await getDocs(collection(firestore, "users"));
     let dataList = [];
-    data.forEach((element) => dataList.push(element.data()));
-    console.log(dataList);
+    data.forEach((element) => dataList.push({data: element.data(), id: element.id}));
     setUsers(dataList);
   };
 
@@ -68,22 +43,19 @@ function App() {
 
   return (
     <div className="App">
-      <form onSubmit={submithandler}>
-        <input type="text" ref={dataRef} />
-        <button type="submit">Save</button>
-      </form>
       {view === "login" && (
-        <Login accounts={accounts} handleLogin={handleLogin} />
+        <Login accounts={users} handleLogin={handleLogin} />
       )}
       {view === "accounts" && (
         <Accounts
           accounts={possible}
-          allAccounts={accounts}
+          allAccounts={users}
           setView={setView}
+          setCurrentId={setCurrentId}
         />
       )}
       {view === "success" && <h2>You are now logged in!</h2>}
-      {view === "reset" && <Reset setView={setView} />}
+      {view === "reset" && <Reset setView={setView} currentId={currentId} />}
     </div>
   );
 }
