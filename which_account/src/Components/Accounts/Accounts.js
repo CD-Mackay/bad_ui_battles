@@ -15,7 +15,7 @@ const Accounts = ({ accounts, setView, allAccounts, setCurrentId }) => {
         <p>{account.data.name}</p>
         <button
           className="account-button"
-          onClick={accounts.length === 0 ? handlePassChange() : setView("success")}
+          onClick={accounts.length === 0 ? () => handlePassChange() : setView("success")}
         >
           {accounts.length === 0 ? "Reset Password" : "Login!"}
         </button>
