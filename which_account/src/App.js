@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from "react";
 import Reset from "./Components/Reset/Reset";
 import handleSubmit from "./handles/handles";
 import { firestore } from "./firebase_setup/firebase";
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, addDoc } from "firebase/firestore";
 
 function App() {
   const [possible, setPossible] = useState([]);
@@ -48,10 +48,8 @@ function App() {
   const [view, setView] = useState("login");
   const [users, setUsers] = useState([]);
 
-  const submithandler = (e) => {
-    e.preventDefault();
-    handleSubmit(dataRef.current.value);
-    dataRef.current.value = "";
+  const submithandler = async (e) => {
+    e.preventDefault();  
   };
 
   const getUsers = async () => {
