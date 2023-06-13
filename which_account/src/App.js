@@ -43,10 +43,6 @@ function App() {
 
   return (
     <div className="App">
-      <form onSubmit={submithandler}>
-        <input type="text" ref={dataRef} />
-        <button type="submit">Save</button>
-      </form>
       {view === "login" && (
         <Login accounts={users} handleLogin={handleLogin} />
       )}
