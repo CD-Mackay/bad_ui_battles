@@ -10,43 +10,20 @@ import { getDocs, collection, addDoc } from "firebase/firestore";
 function App() {
   const [possible, setPossible] = useState([]);
 
-  const accounts = [
-    {
-      username: "Dennis@paddyspub.com",
-      password: "password",
-    },
-    {
-      username: "Charlie@paddyspub.com",
-      password: "pass",
-    },
-    {
-      username: "Frank@paddyspub.com",
-      password: "pass",
-    },
-    {
-      username: "Dee@paddyspub.com",
-      password: "password",
-    },
-    {
-      username: "Mac@paddyspub.com",
-      password: "password",
-    },
-  ];
-
   const dataRef = useRef();
+
+  const [view, setView] = useState("login");
+  const [users, setUsers] = useState([]);
 
   const handleLogin = (e, pass) => {
     e.preventDefault();
-    let possibleAccounts = accounts.filter(
+    let possibleAccounts = users.filter(
       (element) => element.password === pass
     );
     setPossible(possibleAccounts);
     setView("accounts");
     return possibleAccounts;
   };
-
-  const [view, setView] = useState("login");
-  const [users, setUsers] = useState([]);
 
   const submithandler = async (e) => {
     e.preventDefault();  
@@ -71,12 +48,12 @@ function App() {
         <button type="submit">Save</button>
       </form>
       {view === "login" && (
-        <Login accounts={accounts} handleLogin={handleLogin} />
+        <Login accounts={users} handleLogin={handleLogin} />
       )}
       {view === "accounts" && (
         <Accounts
           accounts={possible}
-          allAccounts={accounts}
+          allAccounts={users}
           setView={setView}
         />
       )}
