@@ -32,8 +32,7 @@ function App() {
   const getUsers = async () => {
     const data = await getDocs(collection(firestore, "users"));
     let dataList = [];
-    data.forEach((element) => dataList.push(element.data()));
-    console.log(dataList);
+    data.forEach((element) => dataList.push({data: element.data(), id: element.id}));
     setUsers(dataList);
   };
 
