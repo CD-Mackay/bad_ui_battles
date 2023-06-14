@@ -26,6 +26,7 @@ function App() {
     <div className="App">
       <h1>Please enter your birthday</h1>
       <ChromePicker onChangeComplete={handleChangeColor} color={color} />
+      <br></br>
       <div className="wrapper">
         <div className="input-wrapper">
           <label htmlFor="day">day</label>
