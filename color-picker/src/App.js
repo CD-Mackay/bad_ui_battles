@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { ChromePicker } from "react-color";
+import { showMonth, showYear } from "./helpers/helpers";
 
 function App() {
   const [color, setColor] = useState({ r: 0, g: 0, b: 0 });
@@ -27,7 +28,7 @@ function App() {
       <h6>Please enter your birthday</h6>
       <div className="wrapper">
         <div className="input-wrapper">
-          <label for="day">day</label>
+          <label htmlFor="day">day</label>
           <input
             type="number"
             disabled={true}
@@ -35,7 +36,7 @@ function App() {
           />
         </div>
         <div className="input-wrapper">
-          <label for="month">month</label>
+          <label htmlFor="month">month</label>
 
           <input
             type="number"
@@ -44,7 +45,7 @@ function App() {
           />
         </div>
         <div className="input-wrapper">
-          <label for="year">year</label>
+          <label htmlFor="year">year</label>
 
           <input
             type="number"
@@ -54,6 +55,9 @@ function App() {
         </div>
       </div>
       {!checkValidDate() && <p>Invalid date</p>}
+      {checkValidDate() && 
+      <p>You have selected: {showMonth(Number(date.month.toString().slice(0, 2)))} {date.day}, 19{showYear(date.year)} </p>
+      }
     </div>
   );
 }
