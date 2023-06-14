@@ -6,6 +6,7 @@ import { showMonth, showYear } from "./helpers/helpers";
 function App() {
   const [color, setColor] = useState({ r: 0, g: 0, b: 0 });
   const [date, setDate] = useState({ day: 0, month: 0, year: 0 });
+  const [showPicker, setShowPicker] = useState(false);
 
   const handleChangeColor = (colour) => {
     setColor({ r: colour.rgb.r, g: colour.rgb.g, b: colour.rgb.b });
@@ -25,7 +26,9 @@ function App() {
   return (
     <div className="App">
       <h1>Please enter your birthday</h1>
-      <ChromePicker onChangeComplete={handleChangeColor} color={color} />
+      <p>Use the input below to enter your date of birth</p>
+      <button onClick={() => setShowPicker(true)}>Show Input</button>
+      {showPicker && <ChromePicker onChangeComplete={handleChangeColor} color={color} />}
       <br></br>
       <div className="wrapper">
         <div className="input-wrapper">
