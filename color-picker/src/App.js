@@ -24,8 +24,8 @@ function App() {
   };
   return (
     <div className="App">
+      <h1>Please enter your birthday</h1>
       <ChromePicker onChangeComplete={handleChangeColor} color={color} />
-      <h6>Please enter your birthday</h6>
       <div className="wrapper">
         <div className="input-wrapper">
           <label htmlFor="day">day</label>
@@ -55,9 +55,14 @@ function App() {
         </div>
       </div>
       {!checkValidDate() && <p>Invalid date</p>}
-      {checkValidDate() && 
-      <p>You have selected: {showMonth(Number(date.month.toString().slice(0, 2)))} {date.day}, 19{showYear(date.year)} </p>
-      }
+      {checkValidDate() && (
+        <p>
+          You have selected:{" "}
+          {showMonth(Number(date.month.toString().slice(0, 2)))} {date.day}, 19
+          {showYear(date.year)}
+        </p>
+      )}
+      <button disabled={!checkValidDate()} >Confirm Birthday</button>
     </div>
   );
 }
