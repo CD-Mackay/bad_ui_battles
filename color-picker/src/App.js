@@ -10,12 +10,50 @@ function App() {
     setColor({ r: colour.rgb.r, g: colour.rgb.g, b: colour.rgb.b });
     setDate({ day: colour.rgb.r, month: colour.rgb.g, year: colour.rgb.b });
   };
+
+  const checkValidDate = () => {
+    const { day, month } = date;
+    if (Number(day.toString().slice(0, 2)) > 31) {
+      return false;
+    }
+    if (Number(month.toString().slice(0, 2)) > 12) {
+      return false;
+    }
+    return true;
+  };
   return (
     <div className="App">
       <ChromePicker onChangeComplete={handleChangeColor} color={color} />
-      <p>{color.r.toString().slice(0, 2)}</p>
-      <p>{color.g.toString().slice(0, 2)}</p>
-      <p>{color.b.toString().slice(0, 2)}</p>
+      <h6>Please enter your birthday</h6>
+      <div className="wrapper">
+        <div className="input-wrapper">
+          <label for="day">day</label>
+          <input
+            type="number"
+            disabled={true}
+            value={date.day.toString().slice(0, 2)}
+          />
+        </div>
+        <div className="input-wrapper">
+          <label for="month">month</label>
+
+          <input
+            type="number"
+            disabled={true}
+            value={date.month.toString().slice(0, 2)}
+          />
+        </div>
+        <div className="input-wrapper">
+          <label for="year">year</label>
+
+          <input
+            type="number"
+            disabled={true}
+            value={date.year.toString().slice(0, 2)}
+          />
+        </div>
+      </div>
+      {!checkValidDate() && <p>Invalid date</p>}
     </div>
   );
 }
