@@ -1,10 +1,19 @@
-import './App.css';
-import { SketchPicker } from 'react-color';
+import { useState } from "react";
+import "./App.css";
+import { ChromePicker } from "react-color";
 
 function App() {
+  const [color, setColor] = useState("");
+
+  const handleChangeColor = (color) => {
+    console.log(color.rgb);
+    setColor(color.hex);
+  };
   return (
     <div className="App">
-      <SketchPicker />
+      <ChromePicker onChangeComplete={handleChangeColor}
+      color={color}
+       />
     </div>
   );
 }
