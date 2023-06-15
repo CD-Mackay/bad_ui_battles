@@ -24,49 +24,56 @@ function App() {
     return true;
   };
   return (
-    <div className="App">
-      <h1>Please enter your birthday</h1>
-      <p>Use the input below to enter your date of birth</p>
-      <button onClick={() => setShowPicker(true)}>Show Input</button>
-      {showPicker && <ChromePicker onChangeComplete={handleChangeColor} color={color} />}
-      <br></br>
-      <div className="wrapper">
-        <div className="input-wrapper">
-          <label htmlFor="day">day</label>
-          <input
-            type="number"
-            disabled={true}
-            value={date.day.toString().slice(0, 2)}
-          />
-        </div>
-        <div className="input-wrapper">
-          <label htmlFor="month">month</label>
+    <div className="App" style={{backgroundColor: `rgb(${color.r}, ${color.g}, ${color.b})`}}>
+      <div className="page-wrapper">
+        <h1>Please enter your birthday</h1>
+        <p>Use the input below to enter your date of birth</p>
+        <button onClick={() => setShowPicker(showPicker ? false : true)}>
+          {showPicker ? "Hide input" : "Show Input"}
+        </button>
+        {showPicker && (
+          <ChromePicker onChange={handleChangeColor} color={color} />
+        )}
+        <br></br>
+        <div className="wrapper">
+          <div className="input-wrapper">
+            <label htmlFor="day">day</label>
+            <input
+              type="number"
+              disabled={true}
+              value={date.day.toString().slice(0, 2)}
+            />
+          </div>
+          <div className="input-wrapper">
+            <label htmlFor="month">month</label>
 
-          <input
-            type="number"
-            disabled={true}
-            value={date.month.toString().slice(0, 2)}
-          />
-        </div>
-        <div className="input-wrapper">
-          <label htmlFor="year">year</label>
+            <input
+              type="number"
+              disabled={true}
+              value={date.month.toString().slice(0, 2)}
+            />
+          </div>
+          <div className="input-wrapper">
+            <label htmlFor="year">year</label>
 
-          <input
-            type="number"
-            disabled={true}
-            value={date.year.toString().slice(0, 2)}
-          />
+            <input
+              type="number"
+              disabled={true}
+              value={date.year.toString().slice(0, 2)}
+            />
+          </div>
         </div>
+        {!checkValidDate() && <p>Invalid date</p>}
+        {checkValidDate() && (
+          <p>
+            You have selected:{" "}
+            {showMonth(Number(date.month.toString().slice(0, 2)))} {date.day},
+            19
+            {showYear(date.year)}
+          </p>
+        )}
+        <button disabled={!checkValidDate()}>Confirm Birthday</button>
       </div>
-      {!checkValidDate() && <p>Invalid date</p>}
-      {checkValidDate() && (
-        <p>
-          You have selected:{" "}
-          {showMonth(Number(date.month.toString().slice(0, 2)))} {date.day}, 19
-          {showYear(date.year)}
-        </p>
-      )}
-      <button disabled={!checkValidDate()} >Confirm Birthday</button>
     </div>
   );
 }
