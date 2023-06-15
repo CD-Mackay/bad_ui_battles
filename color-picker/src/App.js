@@ -24,7 +24,7 @@ function App() {
     return true;
   };
   return (
-    <div className="App">
+    <div className="App" style={{backgroundColor: `rgb(${color.r}, ${color.g}, ${color.b})`}}>
       <div className="page-wrapper">
         <h1>Please enter your birthday</h1>
         <p>Use the input below to enter your date of birth</p>
