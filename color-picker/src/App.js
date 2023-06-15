@@ -28,7 +28,7 @@ function App() {
       <h1>Please enter your birthday</h1>
       <p>Use the input below to enter your date of birth</p>
       <button onClick={() => setShowPicker(true)}>Show Input</button>
-      {showPicker && <ChromePicker onChangeComplete={handleChangeColor} color={color} />}
+      {showPicker && <ChromePicker onChange={handleChangeColor} color={color} />}
       <br></br>
       <div className="wrapper">
         <div className="input-wrapper">
