@@ -1,10 +1,8 @@
-import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
   const handleChange = () => {
     inputArr.sort(() => (Math.random() > 0.5 ? 1 : -1));
-    console.log(inputArr);
   };
 
   const inputArr = [
