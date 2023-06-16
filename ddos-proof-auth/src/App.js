@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
 function App() {
+  const handleChange = () => {
+    inputArr.sort(() => (Math.random() > 0.5 ? 1 : -1));
+  };
+
+  const inputArr = [
+    <input type="text" placeholder="1" onChange={handleChange} key={1} />,
+    <input type="password" placeholder="2" onChange={handleChange} key={2} />,
+    <input type="password" placeholder="3" onChange={handleChange} key={3} />,
+  ];
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <form className="login-form">
+        {inputArr.map((element) => {
+          return element;
+        })}
+      </form>
     </div>
   );
 }
