@@ -17,7 +17,7 @@ function App() {
   const handleLogin = (e, pass) => {
     e.preventDefault();
     let possibleAccounts = users.filter(
-      (element) => element.password === pass
+      (element) => element.data.password === pass
     );
     setPossible(possibleAccounts);
     setView("accounts");
