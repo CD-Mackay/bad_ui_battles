@@ -7,12 +7,21 @@ function App() {
     password: "",
     passConfirm: "",
   });
+
+  const shuffleInputs = (array) => {
+    const newArr = [...array];
+    for (let i = newArr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
+    }
+    return newArr;
+  };
   const handleChange = (e) => {
     inputArr.forEach((element) => console.log(element.key));
-    inputArr.sort(() => (Math.random() > 0.5 ? 1 : -1));
+    inputArr = shuffleInputs(inputArr);
     inputArr.forEach((element) => console.log(element.key));
   };
-  const inputArr = [
+  let inputArr = [
     {
       type: "text",
       key: 1,
@@ -27,15 +36,22 @@ function App() {
     },
   ];
 
-  const inputs = inputArr.map((element) => {
-    return (
-      <input type={element.type} key={element.key} placeholder={element.key} onChange={(e) => handleChange(e)} />
-    );
-  });
+
 
   return (
     <div className="App">
-      <form className="login-form">{inputs}</form>
+      <form className="login-form">
+        {inputArr.map((element) => {
+          return (
+            <input
+              type={element.type}
+              key={element.key}
+              placeholder={element.key}
+              onChange={(e) => handleChange(e)}
+            />
+          );
+        })}
+      </form>
     </div>
   );
 }
