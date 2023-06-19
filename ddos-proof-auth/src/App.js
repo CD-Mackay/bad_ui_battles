@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { render } from "@testing-library/react";
+import { useCallback, useEffect, useState } from "react";
+import Inputs from "./Components/Inputs";
 import "./App.css";
 
 function App() {
@@ -8,21 +10,25 @@ function App() {
     passConfirm: "",
   });
 
+  const [test, setTest] = useState(1);
+  const [, updateState] = useState();
+  const forceUpdate = useCallback(() => updateState({}), [])
+
   let inputArr = [
     {
       type: "text",
       key: 1,
-      field: "username"
+      field: "username",
     },
     {
       type: "password",
       key: 2,
-      field: "password"
+      field: "password",
     },
     {
       type: "password",
       key: 3,
-      field: "passConfirm"
+      field: "passConfirm",
     },
   ];
 
@@ -36,22 +42,18 @@ function App() {
   };
   const handleChange = (e) => {
     inputArr = shuffleInputs(inputArr);
+    let newtest = test + 1;
+    setTest(newtest);
+    forceUpdate();
   };
+
+  useEffect(() => {
+    console.log("useffect")
+  }, [test]);
 
   return (
     <div className="App">
-      <form className="login-form">
-        {inputArr.map((element) => {
-          return (
-            <input
-              type={element.type}
-              key={element.key}
-              placeholder={element.key}
-              onChange={(e) => handleChange(e)}
-            />
-          );
-        })}
-      </form>
+      <Inputs inputs={inputArr} handleChange={handleChange} />
     </div>
   );
 }
