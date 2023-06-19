@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
@@ -7,6 +7,24 @@ function App() {
     password: "",
     passConfirm: "",
   });
+
+  let inputArr = [
+    {
+      type: "text",
+      key: 1,
+      field: "username"
+    },
+    {
+      type: "password",
+      key: 2,
+      field: "password"
+    },
+    {
+      type: "password",
+      key: 3,
+      field: "passConfirm"
+    },
+  ];
 
   const shuffleInputs = (array) => {
     const newArr = [...array];
@@ -17,26 +35,8 @@ function App() {
     return newArr;
   };
   const handleChange = (e) => {
-    inputArr.forEach((element) => console.log(element.key));
     inputArr = shuffleInputs(inputArr);
-    inputArr.forEach((element) => console.log(element.key));
   };
-  let inputArr = [
-    {
-      type: "text",
-      key: 1,
-    },
-    {
-      type: "password",
-      key: 2,
-    },
-    {
-      type: "password",
-      key: 3,
-    },
-  ];
-
-
 
   return (
     <div className="App">
