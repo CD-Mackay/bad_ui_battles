@@ -9,6 +9,7 @@ const Inputs = ({ inputs, handleChange }) => {
         <>
           <label>{element.field}</label>
           <input
+            className="input-field"
             type={element.field}
             key={element.key}
             placeholder={element.key}
