@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 import React from 'react';
+import './Inputs.css';
 
 const Inputs = ({inputs, handleChange}) => {
 
@@ -18,7 +19,7 @@ const Inputs = ({inputs, handleChange}) => {
   };
 
   return (
-    <form>
+    <form className='input-form'>
       {renderInputs()}
     </form>
   )
