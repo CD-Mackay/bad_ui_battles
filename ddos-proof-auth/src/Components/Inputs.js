@@ -1,11 +1,10 @@
 import { render } from "@testing-library/react";
-import React from "react";
+import React, { useEffect } from "react";
 import "./Inputs.css";
 
 const Inputs = ({ inputs, handleChange }) => {
   const renderInputs = () => {
     return inputs.map((element) => {
-      console.log(element.key);
       return (
         <>
           <label>{element.field}</label>
@@ -20,7 +19,13 @@ const Inputs = ({ inputs, handleChange }) => {
     });
   };
 
-  return <form className="input-form">{renderInputs()}</form>;
+  let shown = renderInputs();
+
+  useEffect(() =>{
+    console.log("inputs!");
+  })
+
+  return <form className="input-form">{shown}</form>;
 };
 
 export default Inputs;
