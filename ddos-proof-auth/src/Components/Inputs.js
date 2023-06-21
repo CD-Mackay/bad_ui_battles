@@ -5,7 +5,6 @@ import "./Inputs.css";
 const Inputs = ({ inputs, handleChange, forceUpdate }) => {
   const renderInputs = () => {
     return inputs.map((element) => {
-      console.log(element.key)
       return (
         <>
           <label key={element.key * 4}>{element.field}</label>
