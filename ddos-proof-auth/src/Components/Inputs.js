@@ -2,12 +2,13 @@ import { render } from "@testing-library/react";
 import React, { useEffect } from "react";
 import "./Inputs.css";
 
-const Inputs = ({ inputs, handleChange }) => {
+const Inputs = ({ inputs, handleChange, forceUpdate }) => {
   const renderInputs = () => {
     return inputs.map((element) => {
+      console.log(element.key)
       return (
         <>
-          <label>{element.field}</label>
+          <label key={element.key * 4}>{element.field}</label>
           <input
             className="input-field"
             type={element.field}
@@ -26,7 +27,7 @@ const Inputs = ({ inputs, handleChange }) => {
     console.log("inputs!");
   })
 
-  return <form className="input-form">{shown}</form>;
+  return <form className="input-form">{shown}<button onClick={forceUpdate}>update</button></form>;
 };
 
 export default Inputs;

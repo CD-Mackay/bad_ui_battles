@@ -3,6 +3,12 @@ import { useCallback, useEffect, useState } from "react";
 import Inputs from "./Components/Inputs";
 import "./App.css";
 
+function useForceUpdate() {
+  const [value, setValue] = useState(0); // integer state
+  return () => setValue((value) => value + 1); // update state to force render
+  // A function that increment 👆🏻 the previous state like here
+  // is better than directly setting `setValue(value + 1)`
+}
 function App() {
   const [inputValue, setInputValue] = useState({
     username: "",
@@ -11,8 +17,6 @@ function App() {
   });
 
   const [test, setTest] = useState(1);
-  const [, updateState] = useState();
-  const forceUpdate = useCallback(() => updateState({}), [])
 
   let inputArr = [
     {
@@ -32,6 +36,8 @@ function App() {
     },
   ];
 
+  const forceUpdate = useForceUpdate();
+
   const shuffleInputs = (array) => {
     const newArr = [...array];
     for (let i = newArr.length - 1; i > 0; i--) {
@@ -48,12 +54,16 @@ function App() {
   };
 
   useEffect(() => {
-    console.log("useffect")
+    console.log("useffect");
   }, [test]);
 
   return (
     <div className="App">
-      <Inputs inputs={inputArr} handleChange={handleChange} />
+      <Inputs
+        inputs={inputArr}
+        handleChange={handleChange}
+        forceUpdate={forceUpdate}
+      />
     </div>
   );
 }
