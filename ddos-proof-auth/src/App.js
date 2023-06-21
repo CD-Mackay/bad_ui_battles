@@ -30,6 +30,9 @@ function App() {
     },
   ];
 
+  const [inputs, setInputs] = useState(inputArr);
+
+
 
   const shuffleInputs = (array) => {
     const newArr = [...array];
@@ -40,24 +43,32 @@ function App() {
     return newArr;
   };
   const handleChange = (e) => {
+    e.preventDefault();
     inputArr = shuffleInputs(inputArr);
     for (let element of inputArr) {
       console.log(element.key)
     }
     let newtest = test + 1;
     setTest(newtest);
+    setInputs(inputArr)
   };
 
   useEffect(() => {
-    console.log("useffect");
+    const mountArray = shuffleInputs(inputArr)
+    setInputs(mountArray)
   }, [test]);
+
+  function handleShuffle() {
+    const changes = shuffleInputs([...inputs]);
+    setInputs(changes);
+    console.log("everyday I'm shufflin");
+  }
 
   return (
     <div className="App">
-      <Inputs
-        inputs={inputArr}
-        handleChange={handleChange}
-      />
+      {inputs.map((element) => {
+       return <input type={element.field} onChange={handleShuffle} key={element.key} placeholder={element.field} />
+      })}
     </div>
   );
 }
