@@ -42,8 +42,7 @@ function App() {
   };
   const handleChange = (e) => {
     e.preventDefault();
-    inputArr = shuffleInputs(inputArr);
-    setInputs(inputArr)
+    setInputValue()
   };
 
   useEffect(() => {
@@ -60,7 +59,7 @@ function App() {
   return (
     <div className="App">
       {inputs.map((element) => {
-       return <Input type={element.type} onChange={handleShuffle} name={element.field} />
+       return <Input type={element.type} onChange={handleShuffle} key={element.key} name={element.field} />
       })}
     </div>
   );
