@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import { useCallback, useEffect, useState } from "react";
-import Inputs from "./Components/Inputs";
+import Input from "./Components/Inputs";
 import "./App.css";
 
 function App() {
@@ -60,7 +60,7 @@ function App() {
   return (
     <div className="App">
       {inputs.map((element) => {
-       return <input type={element.field} onChange={handleShuffle} key={element.key} placeholder={element.field} />
+       return <Input type={element.type} onChange={handleShuffle} name={element.field} />
       })}
     </div>
   );
