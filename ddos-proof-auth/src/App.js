@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import { useCallback, useEffect, useState } from "react";
-import Inputs from "./Components/Inputs";
+import Input from "./Components/Inputs";
 import "./App.css";
 
 function App() {
@@ -9,10 +9,6 @@ function App() {
     password: "",
     passConfirm: "",
   });
-
-  const [test, setTest] = useState(1);
-  const [, updateState] = useState();
-  const forceUpdate = useCallback(() => updateState({}), [])
 
   let inputArr = [
     {
@@ -32,6 +28,10 @@ function App() {
     },
   ];
 
+  const [inputs, setInputs] = useState(inputArr);
+
+
+
   const shuffleInputs = (array) => {
     const newArr = [...array];
     for (let i = newArr.length - 1; i > 0; i--) {
@@ -41,19 +41,26 @@ function App() {
     return newArr;
   };
   const handleChange = (e) => {
-    inputArr = shuffleInputs(inputArr);
-    let newtest = test + 1;
-    setTest(newtest);
-    forceUpdate();
+    e.preventDefault();
+    setInputValue()
   };
 
   useEffect(() => {
-    console.log("useffect")
-  }, [test]);
+    const mountArray = shuffleInputs(inputArr)
+    setInputs(mountArray)
+  }, []);
+
+  function handleShuffle() {
+    const changes = shuffleInputs([...inputs]);
+    setInputs(changes);
+    console.log("everyday I'm shufflin");
+  }
 
   return (
     <div className="App">
-      <Inputs inputs={inputArr} handleChange={handleChange} />
+      {inputs.map((element) => {
+       return <Input type={element.type} onChange={handleShuffle} key={element.key} name={element.field} />
+      })}
     </div>
   );
 }
