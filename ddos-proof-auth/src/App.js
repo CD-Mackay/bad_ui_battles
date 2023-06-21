@@ -10,8 +10,6 @@ function App() {
     passConfirm: "",
   });
 
-  const [test, setTest] = useState(1);
-
   let inputArr = [
     {
       type: "text",
@@ -45,18 +43,13 @@ function App() {
   const handleChange = (e) => {
     e.preventDefault();
     inputArr = shuffleInputs(inputArr);
-    for (let element of inputArr) {
-      console.log(element.key)
-    }
-    let newtest = test + 1;
-    setTest(newtest);
     setInputs(inputArr)
   };
 
   useEffect(() => {
     const mountArray = shuffleInputs(inputArr)
     setInputs(mountArray)
-  }, [test]);
+  }, []);
 
   function handleShuffle() {
     const changes = shuffleInputs([...inputs]);
