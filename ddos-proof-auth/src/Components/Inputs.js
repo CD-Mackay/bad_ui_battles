@@ -1,8 +1,15 @@
 import { render } from "@testing-library/react";
-import React, { useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
 import "./Inputs.css";
 
-const Inputs = ({ inputs, handleChange, forceUpdate }) => {
+const Inputs = ({ inputs, handleChange }) => {
+
+  const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
+
+  const handleInput = (e)  =>{
+    handleChange(e);
+    forceUpdate();
+  }
   const renderInputs = () => {
     return inputs.map((element) => {
       return (
@@ -13,7 +20,7 @@ const Inputs = ({ inputs, handleChange, forceUpdate }) => {
             type={element.field}
             key={element.key}
             placeholder={element.key}
-            onChange={(e) => handleChange(e)}
+            onChange={(e) => handleInput(e)}
           />
         </>
       );
@@ -22,11 +29,12 @@ const Inputs = ({ inputs, handleChange, forceUpdate }) => {
 
   let shown = renderInputs();
 
+
   useEffect(() =>{
     console.log("inputs!");
   })
 
-  return <form className="input-form">{shown}<button onClick={forceUpdate}>update</button></form>;
+  return <form className="input-form">{shown}<button onClick={(e) => handleInput(e)}>update</button></form>;
 };
 
 export default Inputs;
