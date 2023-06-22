@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from "react";
 import Input from "./Components/Inputs";
 import "./App.css";
@@ -10,14 +9,16 @@ function App() {
     passConfirm: "",
   });
 
+  const [view, setView] = useState("login");
+
   const inputRef = useRef(null);
-  const hiddenInput = document.getElementById('hidden-input')
+  const hiddenInput = document.getElementById("hidden-input");
 
   const unFocus = () => {
     // inputRef.current.blur();
-    console.log(hiddenInput)
+    console.log(hiddenInput);
     hiddenInput.focus();
-  }
+  };
 
   let inputArr = [
     {
@@ -39,8 +40,6 @@ function App() {
 
   const [inputs, setInputs] = useState(inputArr);
 
-
-
   const shuffleInputs = (array) => {
     const newArr = [...array];
     for (let i = newArr.length - 1; i > 0; i--) {
@@ -51,15 +50,27 @@ function App() {
   };
   const handleChange = (e) => {
     e.preventDefault();
-    setInputValue()
+    const { value, name } = e.target;
+    console.log("value", value, "name", name);
+    setInputValue((prevNote) => ({
+      ...prevNote,
+      [name]: value,
+    }));
+  };
+
+  const handleLogin = () => {
+    if (inputValue.password === inputValue.passConfirm && inputValue.password !== "") {
+      setView("success");
+    }
   };
 
   useEffect(() => {
-    const mountArray = shuffleInputs(inputArr)
-    setInputs(mountArray)
+    const mountArray = shuffleInputs(inputArr);
+    setInputs(mountArray);
   }, []);
 
-  function handleShuffle() {
+  function handleShuffle(e) {
+    handleChange(e)
     unFocus();
     const changes = shuffleInputs([...inputs]);
     setInputs(changes);
@@ -68,10 +79,26 @@ function App() {
 
   return (
     <div className="App">
-      {inputs.map((element) => {
-       return <Input type={element.type} inputRef={inputRef} onChange={handleShuffle} key={element.key} name={element.field} />
-      })}
-      <input type="button" id="hidden-input" />
+      {view === "login" && 
+        <>
+          {" "}
+          {inputs.map((element) => {
+            return (
+              <Input
+                type={element.type}
+                inputRef={inputRef}
+                onChange={(e) => handleShuffle(e)}
+                key={element.key}
+                name={element.field}
+                inputValue={inputValue}
+              />
+            );
+          })}
+          <button onClick={handleLogin}>Login!</button>
+          <input type="button" id="hidden-input" />
+        </>
+      }
+      {view === "success" && <p>You are now logged in!</p>}
     </div>
   );
 }
