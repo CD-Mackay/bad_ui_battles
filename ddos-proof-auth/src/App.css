@@ -4,3 +4,10 @@
   justify-content: center;
   height: 100vh;
 }
+
+#hidden-input {
+  position: fixed;
+  bottom: 0;
+  width: 1px;
+  height: 1px;
+}
