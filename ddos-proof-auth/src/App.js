@@ -1,5 +1,5 @@
-import { render } from "@testing-library/react";
-import { useCallback, useEffect, useState } from "react";
+
+import { useEffect, useState, useRef } from "react";
 import Input from "./Components/Inputs";
 import "./App.css";
 
@@ -9,6 +9,12 @@ function App() {
     password: "",
     passConfirm: "",
   });
+
+  const inputRef = useRef();
+
+  const unFocus = () => {
+    inputRef.current.blur();
+  }
 
   let inputArr = [
     {
@@ -54,12 +60,13 @@ function App() {
     const changes = shuffleInputs([...inputs]);
     setInputs(changes);
     console.log("everyday I'm shufflin");
+    unFocus();
   }
 
   return (
     <div className="App">
       {inputs.map((element) => {
-       return <Input type={element.type} onChange={handleShuffle} key={element.key} name={element.field} />
+       return <Input type={element.type} ref={inputRef} onChange={handleShuffle} key={element.key} name={element.field} />
       })}
     </div>
   );
