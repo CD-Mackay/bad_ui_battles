@@ -10,10 +10,13 @@ function App() {
     passConfirm: "",
   });
 
-  const inputRef = useRef();
+  const inputRef = useRef(null);
+  const hiddenInput = document.getElementById('hidden-input')
 
   const unFocus = () => {
-    inputRef.current.blur();
+    // inputRef.current.blur();
+    console.log(hiddenInput)
+    hiddenInput.focus();
   }
 
   let inputArr = [
@@ -57,17 +60,18 @@ function App() {
   }, []);
 
   function handleShuffle() {
+    unFocus();
     const changes = shuffleInputs([...inputs]);
     setInputs(changes);
     console.log("everyday I'm shufflin");
-    unFocus();
   }
 
   return (
     <div className="App">
       {inputs.map((element) => {
-       return <Input type={element.type} ref={inputRef} onChange={handleShuffle} key={element.key} name={element.field} />
+       return <Input type={element.type} inputRef={inputRef} onChange={handleShuffle} key={element.key} name={element.field} />
       })}
+      <input type="button" id="hidden-input" />
     </div>
   );
 }
