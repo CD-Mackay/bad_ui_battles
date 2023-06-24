@@ -10,4 +10,11 @@
   bottom: 0;
   width: 1px;
   height: 1px;
+  color: white;
+  border: none;
+}
+
+#login-button {
+  width: 200px;
+  margin: 0 auto;
 }

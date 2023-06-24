@@ -25,16 +25,19 @@ function App() {
       type: "text",
       key: 1,
       field: "username",
+      label :"username"
     },
     {
       type: "password",
       key: 2,
       field: "password",
+      label: "password"
     },
     {
       type: "password",
       key: 3,
       field: "passConfirm",
+      label: "confirm password"
     },
   ];
 
@@ -91,10 +94,11 @@ function App() {
                 key={element.key}
                 name={element.field}
                 inputValue={inputValue}
+                label={element.label}
               />
             );
           })}
-          <button onClick={handleLogin}>Login!</button>
+          <button id="login-button" onClick={handleLogin}>Login!</button>
           <input type="button" id="hidden-input" />
         </>
       }
