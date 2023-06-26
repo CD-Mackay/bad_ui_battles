@@ -18,3 +18,11 @@
   width: 200px;
   margin: 0 auto;
 }
+
+.form-wrapper {
+  border: 1px solid black;
+  width: 250px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 5px;
+}

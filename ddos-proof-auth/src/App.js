@@ -83,7 +83,7 @@ function App() {
   return (
     <div className="App">
       {view === "login" && 
-        <>
+        <div className="form-wrapper">
           {" "}
           {inputs.map((element) => {
             return (
@@ -100,7 +100,7 @@ function App() {
           })}
           <button id="login-button" onClick={handleLogin}>Login!</button>
           <input type="button" id="hidden-input" />
-        </>
+        </div>
       }
       {view === "success" && <p>You are now logged in!</p>}
     </div>
