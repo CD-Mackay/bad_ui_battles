@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { Helmet } from "react-helmet-async";
 import Input from "./Components/Inputs";
 import "./App.css";
 
@@ -25,19 +26,19 @@ function App() {
       type: "text",
       key: 1,
       field: "username",
-      label :"username"
+      label: "username",
     },
     {
       type: "password",
       key: 2,
       field: "password",
-      label: "password"
+      label: "password",
     },
     {
       type: "password",
       key: 3,
       field: "passConfirm",
-      label: "confirm password"
+      label: "confirm password",
     },
   ];
 
@@ -62,7 +63,10 @@ function App() {
   };
 
   const handleLogin = () => {
-    if (inputValue.password === inputValue.passConfirm && inputValue.password !== "") {
+    if (
+      inputValue.password === inputValue.passConfirm &&
+      inputValue.password !== ""
+    ) {
       setView("success");
     }
   };
@@ -73,7 +77,7 @@ function App() {
   }, []);
 
   function handleShuffle(e) {
-    handleChange(e)
+    handleChange(e);
     unFocus();
     const changes = shuffleInputs([...inputs]);
     setInputs(changes);
@@ -82,11 +86,13 @@ function App() {
 
   return (
     <div className="App">
-      {view === "login" && 
+      <Helmet>
+        <title>DDOS Proof Auth</title>
+      </Helmet>
+      {view === "login" && (
         <div className="form-wrapper">
           <h3>Select a Username and password to register an account!</h3>
-          <span id="info">DDOS protection enabled</span>
-          {" "}
+          <span id="info">DDOS protection enabled</span>{" "}
           {inputs.map((element) => {
             return (
               <Input
@@ -100,10 +106,12 @@ function App() {
               />
             );
           })}
-          <button id="login-button" onClick={handleLogin}>Login!</button>
+          <button id="login-button" onClick={handleLogin}>
+            Login!
+          </button>
           <input type="button" id="hidden-input" />
         </div>
-      }
+      )}
       {view === "success" && <p>You are now logged in!</p>}
     </div>
   );
