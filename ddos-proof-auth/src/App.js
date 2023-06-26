@@ -84,6 +84,8 @@ function App() {
     <div className="App">
       {view === "login" && 
         <div className="form-wrapper">
+          <h3>Select a Username and password to register an account!</h3>
+          <span id="info">DDOS protection enabled</span>
           {" "}
           {inputs.map((element) => {
             return (
