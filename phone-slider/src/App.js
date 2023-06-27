@@ -11,7 +11,9 @@ function App() {
   return (
     <div className="App">
       <input type="range" min="1111111111" value={phone} onChange={(e) => handleChange(e)}max="9999999999" />
-      <p>{phone}</p>
+      <span>({phone.toString().slice(0,3)})</span>
+      <span>-{phone.toString().slice(3,6)}</span>
+      <span>-{phone.toString().slice(7)}</span>
     </div>
   );
 }
