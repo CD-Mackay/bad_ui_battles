@@ -10,16 +10,20 @@ function App() {
 
   return (
     <div className="App">
+      <h4>Please Input your phone number to proceed</h4>
       <input
+        id="slider"
         type="range"
         min="1111111111"
         value={phone}
         onChange={(e) => handleChange(e)}
         max="9999999999"
       />
-      <span>({phone.toString().slice(0, 3)})</span>
-      <span>-{phone.toString().slice(3, 6)}</span>
-      <span>-{phone.toString().slice(7)}</span>
+      <div className="span-wrapper">
+        <span>({phone.toString().slice(0, 3)})</span>
+        <span>-{phone.toString().slice(3, 6)}</span>
+        <span>-{phone.toString().slice(7)}</span>
+      </div>
     </div>
   );
 }

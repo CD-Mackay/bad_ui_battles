@@ -1,5 +1,12 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#slider {
+  width: 300px;
+  margin: 0 auto;
 }
 
 .App-logo {
