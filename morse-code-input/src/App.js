@@ -75,7 +75,7 @@ function App() {
 
   return (
     <div className="App">
-      <textarea disabled>{stringFrag}</textarea>
+      <textarea disabled value={fullString}></textarea>
       <div className="button-wrapper">
         <button onClick={() => addCodeFrag(".")}>.</button>
         <button onClick={() => addCodeFrag("-")}>-</button>
