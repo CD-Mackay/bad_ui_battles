@@ -5,7 +5,7 @@ import { useState } from 'react';
 function App() {
 
   const [stringFrag, setStringFrag] = useState("");
-  const [fullString, setFullString] = useState("")
+  const [fullString, setFullString] = useState("");
 
   const morseData = {
     "0": "-----",
@@ -55,13 +55,28 @@ function App() {
     ")": "-.--.-"
   };
 
+  const addChar = (newChar) => {
+    let stringCopy = fullString;
+    stringCopy = stringCopy + newChar;
+    setFullString(stringCopy);
+  };
+
+  const addCodeFrag = (code) => {
+    let codeCopy = stringFrag;
+    codeCopy = codeCopy + code;
+    setStringFrag(codeCopy);
+  }
+
+  const translateCode = () => {
+    
+  }
 
   return (
     <div className="App">
-      <textarea disabled>random stuff!!!</textarea>
+      <textarea disabled>{stringFrag}</textarea>
       <div className="button-wrapper">
-        <button>.</button>
-        <button>-</button>
+        <button onClick={() => addCodeFrag(".")}>.</button>
+        <button onClick={() => addCodeFrag("-")}>-</button>
         <button>Enter</button>
       </div>
     </div>
