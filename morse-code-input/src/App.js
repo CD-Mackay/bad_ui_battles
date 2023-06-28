@@ -68,7 +68,9 @@ function App() {
   }
 
   const translateCode = () => {
-    
+    const newChar = Object.keys(morseData, stringFrag).find(key => morseData[key] === stringFrag);
+    addChar(newChar);
+    setStringFrag("");
   }
 
   return (
@@ -77,7 +79,7 @@ function App() {
       <div className="button-wrapper">
         <button onClick={() => addCodeFrag(".")}>.</button>
         <button onClick={() => addCodeFrag("-")}>-</button>
-        <button>Enter</button>
+        <button onClick={translateCode}>Enter</button>
       </div>
     </div>
   );
