@@ -6,7 +6,6 @@ function App() {
   const [fullString, setFullString] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-
   const morseData = {
     0: "-----",
     1: ".----",
@@ -74,9 +73,16 @@ function App() {
     if (newChar !== undefined) {
       addChar(newChar);
     } else {
-      setErrorMessage("Not a valid character")
+      showError();
     }
     setStringFrag("");
+  };
+
+  const showError = () => {
+    setErrorMessage("Not a valid character");
+    setTimeout(() => {
+      setErrorMessage("");
+    }, 2000);
   };
 
   return (
@@ -86,8 +92,15 @@ function App() {
         <button onClick={() => addCodeFrag(".")}>.</button>
         <button onClick={() => addCodeFrag("-")}>-</button>
         <button onClick={translateCode}>Enter</button>
-        <span>{errorMessage}</span>
       </div>
+      <span>Current pattern: {stringFrag}</span>
+      <span>
+        Current character: 
+        {Object.keys(morseData, stringFrag).find(
+          (key) => morseData[key] === stringFrag
+        )}
+      </span>
+      <span>{errorMessage}</span>
     </div>
   );
 }
