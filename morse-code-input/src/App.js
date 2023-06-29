@@ -1,6 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 import Button from 'react-bootstrap/Button';
+import { Alert } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
@@ -102,7 +103,8 @@ function App() {
           (key) => morseData[key] === stringFrag
         )}
       </span>
-      <span>{errorMessage}</span>
+      {/* <span>{errorMessage}</span> */}
+      {errorMessage !== "" && <Alert variant='warning'>{errorMessage}</Alert>}
     </div>
   );
 }
