@@ -1,8 +1,8 @@
 import "./App.css";
 import { useState } from "react";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 import { Alert } from "react-bootstrap";
-import 'bootstrap/dist/css/bootstrap.css';
+import "bootstrap/dist/css/bootstrap.css";
 
 function App() {
   const [stringFrag, setStringFrag] = useState("");
@@ -92,19 +92,32 @@ function App() {
     <div className="App">
       <textarea disabled value={fullString}></textarea>
       <div className="button-wrapper">
-        <Button variant="outline-primary" size="sm" onClick={() => addCodeFrag(".")}>.</Button>
-        <Button variant="outline-primary" size="sm" onClick={() => addCodeFrag("-")}>-</Button>
-        <Button variant="success" size="sm" onClick={translateCode}>Enter</Button>
+        <Button
+          variant="outline-primary"
+          size="sm"
+          onClick={() => addCodeFrag(".")}
+        >
+          .
+        </Button>
+        <Button
+          variant="outline-primary"
+          size="sm"
+          onClick={() => addCodeFrag("-")}
+        >
+          -
+        </Button>
+        <Button variant="success" size="sm" onClick={translateCode}>
+          Enter
+        </Button>
       </div>
       <span>Current pattern: {stringFrag}</span>
       <span>
-        Current character: 
+        Current character:
         {Object.keys(morseData, stringFrag).find(
           (key) => morseData[key] === stringFrag
         )}
       </span>
-      {/* <span>{errorMessage}</span> */}
-      {errorMessage !== "" && <Alert variant='warning'>{errorMessage}</Alert>}
+      {errorMessage !== "" && <Alert variant="warning">{errorMessage}</Alert>}
     </div>
   );
 }
