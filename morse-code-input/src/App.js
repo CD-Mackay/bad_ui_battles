@@ -1,5 +1,7 @@
 import "./App.css";
 import { useState } from "react";
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
   const [stringFrag, setStringFrag] = useState("");
@@ -89,9 +91,9 @@ function App() {
     <div className="App">
       <textarea disabled value={fullString}></textarea>
       <div className="button-wrapper">
-        <button onClick={() => addCodeFrag(".")}>.</button>
-        <button onClick={() => addCodeFrag("-")}>-</button>
-        <button onClick={translateCode}>Enter</button>
+        <Button variant="outline-primary" size="sm" onClick={() => addCodeFrag(".")}>.</Button>
+        <Button variant="outline-primary" size="sm" onClick={() => addCodeFrag("-")}>-</Button>
+        <Button variant="success" size="sm" onClick={translateCode}>Enter</Button>
       </div>
       <span>Current pattern: {stringFrag}</span>
       <span>

@@ -4,3 +4,8 @@
   align-items: center;
   margin-top: 20px;
 }
+
+.button-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
