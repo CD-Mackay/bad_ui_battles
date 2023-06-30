@@ -118,6 +118,7 @@ function App() {
         )}
       </span>
       {errorMessage !== "" && <Alert variant="warning">{errorMessage}</Alert>}
+      <Button variant="info" size="sm">Lost?</Button>
     </div>
   );
 }
