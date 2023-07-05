@@ -3,11 +3,13 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { Alert } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
+import MorseChart from "./Components/MorseChart/MorseChart";
 
 function App() {
   const [stringFrag, setStringFrag] = useState("");
   const [fullString, setFullString] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [showChart, setShowChart] = useState(false);
 
   const morseData = {
     0: "-----",
@@ -56,6 +58,64 @@ function App() {
     "(": "-.--.",
     ")": "-.--.-",
   };
+
+  const convertData = (obj) => {
+    let result = [];
+    for (let element in obj) {
+      result.push([element, obj[element]]);
+    }
+    return result;
+  };
+
+  console.log(JSON.stringify(convertData(morseData)));
+
+  const morseArr = [
+    ["0", "-----"],
+    ["1", ".----"],
+    ["2", "..---"],
+    ["3", "...--"],
+    ["4", "....-"],
+    ["5", "....."],
+    ["6", "-...."],
+    ["7", "--..."],
+    ["8", "---.."],
+    ["9", "----."],
+    ["a", ".-"],
+    ["b", "-..."],
+    ["c", "-.-."],
+    ["d", "-.."],
+    ["e", "."],
+    ["f", "..-."],
+    ["g", "--."],
+    ["h", "...."],
+    ["i", ".."],
+    ["j", ".---"],
+    ["k", "-.-"],
+    ["l", ".-.."],
+    ["m", "--"],
+    ["n", "-."],
+    ["o", "---"],
+    ["p", ".--."],
+    ["q", "--.-"],
+    ["r", ".-."],
+    ["s", "..."],
+    ["t", "-"],
+    ["u", "..-"],
+    ["v", "...-"],
+    ["w", ".--"],
+    ["x", "-..-"],
+    ["y", "-.--"],
+    ["z", "--.."],
+    [".", ".-.-.-"],
+    [",", "--..--"],
+    ["?", "..--.."],
+    ["!", "-.-.--"],
+    ["-", "-....-"],
+    ["/", "-..-."],
+    ["@", ".--.-."],
+    ["(", "-.--."],
+    [")", "-.--.-"],
+  ];
 
   const addChar = (newChar) => {
     let stringCopy = fullString;
@@ -118,7 +178,16 @@ function App() {
         )}
       </span>
       {errorMessage !== "" && <Alert variant="warning">{errorMessage}</Alert>}
-      <Button variant="info" size="sm">Lost?</Button>
+      <Button
+        variant="info"
+        onClick={
+          showChart ? () => setShowChart(false) : () => setShowChart(true)
+        }
+        size="sm"
+      >
+        Lost?
+      </Button>
+      {showChart && <MorseChart data={morseArr} />}
     </div>
   );
 }
