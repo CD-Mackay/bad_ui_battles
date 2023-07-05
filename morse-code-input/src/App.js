@@ -8,6 +8,7 @@ function App() {
   const [stringFrag, setStringFrag] = useState("");
   const [fullString, setFullString] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [showChart, setShowChart] = useState(false);
 
   const morseData = {
     0: "-----",
@@ -176,9 +177,12 @@ function App() {
         )}
       </span>
       {errorMessage !== "" && <Alert variant="warning">{errorMessage}</Alert>}
-      <Button variant="info" size="sm">
+      <Button variant="info" onClick={showChart ? () => setShowChart(false) : () => setShowChart(true)}size="sm">
         Lost?
       </Button>
+      {showChart && morseArr.map((element) => {
+        return <p>{element[0]}: {element[1]}</p>
+      })}
     </div>
   );
 }
