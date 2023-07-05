@@ -3,6 +3,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { Alert } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
+import MorseChart from "./Components/MorseChart/MorseChart";
 
 function App() {
   const [stringFrag, setStringFrag] = useState("");
@@ -177,12 +178,16 @@ function App() {
         )}
       </span>
       {errorMessage !== "" && <Alert variant="warning">{errorMessage}</Alert>}
-      <Button variant="info" onClick={showChart ? () => setShowChart(false) : () => setShowChart(true)}size="sm">
+      <Button
+        variant="info"
+        onClick={
+          showChart ? () => setShowChart(false) : () => setShowChart(true)
+        }
+        size="sm"
+      >
         Lost?
       </Button>
-      {showChart && morseArr.map((element) => {
-        return <p>{element[0]}: {element[1]}</p>
-      })}
+      {showChart && <MorseChart data={morseArr} />}
     </div>
   );
 }
