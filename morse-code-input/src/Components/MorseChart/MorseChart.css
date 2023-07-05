@@ -1,0 +1,11 @@
+.morse-chart {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.morse-chart-element {
+  border: 1px solid black;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+}
