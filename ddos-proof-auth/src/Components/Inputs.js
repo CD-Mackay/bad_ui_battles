@@ -12,7 +12,7 @@ const Input = ({ type, name, onChange, inputRef, inputValue, label }) => {
         value={inputValue.name}
         name={name}
         ref={inputRef}
-        placeholder={name}
+        placeholder={label}
       />
     </div>
   );
