@@ -5,6 +5,10 @@
   height: 100vh;
 }
 
+h3 {
+  text-align: center;
+}
+
 #hidden-input {
   position: fixed;
   bottom: 0;
