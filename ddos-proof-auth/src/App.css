@@ -17,6 +17,14 @@
 #login-button {
   width: 250px;
   margin: 0 auto;
+  color: white;
+  background-color: black;
+  border-radius: 25px;
+  border: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: medium;
+  font-weight: bold;
 }
 
 .form-wrapper {
