@@ -8,4 +8,15 @@
 .button-wrapper {
   display: flex;
   justify-content: space-between;
+  width: 192px;
+  margin: 5px;
+}
+
+.input-wrapper {
+  display: flex;
+  justify-content: start;
+}
+
+#second-button {
+  align-self: flex-start;
 }

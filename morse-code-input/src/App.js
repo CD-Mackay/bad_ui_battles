@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import { Alert } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import MorseChart from "./Components/MorseChart/MorseChart";
-import { morseArr, morseData} from './data.js'
+import { morseArr, morseData } from "./data.js";
 
 function App() {
   const [stringFrag, setStringFrag] = useState("");
@@ -47,20 +47,23 @@ function App() {
     <div className="App">
       <textarea disabled value={fullString}></textarea>
       <div className="button-wrapper">
-        <Button
-          variant="outline-primary"
-          size="sm"
-          onClick={() => addCodeFrag(".")}
-        >
-          .
-        </Button>
-        <Button
-          variant="outline-primary"
-          size="sm"
-          onClick={() => addCodeFrag("-")}
-        >
-          -
-        </Button>
+        <div className="input-wrapper">
+          <Button
+            variant="outline-primary"
+            size="md"
+            onClick={() => addCodeFrag(".")}
+          >
+            .
+          </Button>
+          <Button
+            variant="outline-primary"
+            size="md"
+            id="second-button"
+            onClick={() => addCodeFrag("-")}
+          >
+            -
+          </Button>
+        </div>
         <Button variant="success" size="sm" onClick={translateCode}>
           Enter
         </Button>
@@ -78,7 +81,7 @@ function App() {
         onClick={
           showChart ? () => setShowChart(false) : () => setShowChart(true)
         }
-        size="sm"
+        size="md"
       >
         Lost?
       </Button>
