@@ -41,7 +41,7 @@ function App() {
             <input
               type="number"
               disabled={true}
-              value={date.day.toString().slice(0, 2)}
+              value={date.day.toString().slice(0, 1)}
             />
           </div>
           <div className="input-wrapper">
@@ -67,7 +67,7 @@ function App() {
         {checkValidDate() && (
           <p>
             You have selected:{" "}
-            {showMonth(Number(date.month.toString().slice(0, 2)))} {date.day},
+            {showMonth(Number(date.month.toString().slice(0, 2)))} {date.day.toString().slice(0,2)},
             19
             {showYear(date.year)}
           </p>
