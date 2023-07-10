@@ -58,7 +58,6 @@ function App() {
           <Button
             variant="outline-primary"
             size="md"
-            id="second-button"
             onClick={() => addCodeFrag("-")}
           >
             -

@@ -16,7 +16,3 @@
   display: flex;
   justify-content: start;
 }
-
-#second-button {
-  align-self: flex-start;
-}
