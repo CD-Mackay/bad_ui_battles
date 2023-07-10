@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import { ChromePicker } from "react-color";
 import { showMonth, showYear } from "./helpers/helpers";
+import { Helmet } from "react-helmet-async";
 
 function App() {
   const [color, setColor] = useState({ r: 0, g: 0, b: 0 });
@@ -25,6 +26,9 @@ function App() {
   };
   return (
     <div className="App" style={{backgroundColor: `rgb(${color.r}, ${color.g}, ${color.b})`}}>
+       <Helmet>
+      <title>Date Picker</title>
+      </Helmet>
       <div className="page-wrapper">
         <h1>Please enter your birthday</h1>
         <p>Use the input below to enter your date of birth</p>
