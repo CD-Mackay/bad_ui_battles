@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 function App() {
   const [phone, setPhone] = useState(5555555555);
@@ -10,6 +11,9 @@ function App() {
 
   return (
     <div className="App">
+      <Helmet>
+        <title>Phone Input</title>
+      </Helmet>
       <h4>Please Input your phone number to proceed</h4>
       <input
         id="slider"
