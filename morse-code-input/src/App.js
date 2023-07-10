@@ -5,6 +5,7 @@ import { Alert } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import MorseChart from "./Components/MorseChart/MorseChart";
 import { morseArr, morseData } from "./data.js";
+import { Helmet } from "react-helmet-async";
 
 function App() {
   const [stringFrag, setStringFrag] = useState("");
@@ -45,6 +46,9 @@ function App() {
 
   return (
     <div className="App">
+      <Helmet>
+        <title>Morse Code Input</title>
+      </Helmet>
       <textarea disabled value={fullString}></textarea>
       <div className="button-wrapper">
         <div className="input-wrapper">
