@@ -1,11 +1,12 @@
 .account-item {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   width: 320px;
   margin: 0 auto;
   margin-bottom: 5px;
   border: 1px solid black;
   border-radius: 5px;
+  padding: 5px;
 }
 
 .account-item:hover {

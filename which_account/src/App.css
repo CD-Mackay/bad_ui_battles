@@ -4,6 +4,8 @@
   flex-direction: column;
   justify-content: center;
   height: 60vh;
+  width: 60vw;
+  margin: 0 auto;
 }
 
 .App-logo {
