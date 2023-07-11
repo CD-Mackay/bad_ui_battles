@@ -23,7 +23,7 @@ const Accounts = ({ accounts, setView, allAccounts, setCurrentId }) => {
     );
   };
   return (
-    <div>
+    <div className="accounts-page">
       {accounts.length > 0 && (
         <h3>
           Looks like that password belongs to a few accounts, please select

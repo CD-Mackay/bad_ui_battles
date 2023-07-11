@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
 
-const Login = ({ accounts, handleLogin }) => {
+const Login = ({ handleLogin }) => {
   const [password, setPassword] = useState();
 
   const handleChange = (e) => {

@@ -42,7 +42,7 @@ function App() {
         <title>Foolproof Login System</title>
       </Helmet>
       {view === "login" && (
-        <Login accounts={users} handleLogin={handleLogin} />
+        <Login handleLogin={handleLogin} />
       )}
       {view === "accounts" && (
         <Accounts
