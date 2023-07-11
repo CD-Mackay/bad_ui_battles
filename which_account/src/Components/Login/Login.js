@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './Login.css'
+import "./Login.css";
 
 const Login = ({ accounts, handleLogin }) => {
   const [password, setPassword] = useState();
@@ -10,7 +10,11 @@ const Login = ({ accounts, handleLogin }) => {
 
   return (
     <div className="login">
-      <h3>Welcome to Which_Account! Please enter your password to proceed</h3>
+      <h3>
+        Welcome to Which_Account! <br />
+        <br />
+        Please enter your password to proceed
+      </h3>
       <form className="login-form">
         <input
           type="password"
