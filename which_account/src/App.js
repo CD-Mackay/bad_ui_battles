@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import Reset from "./Components/Reset/Reset";
 import { firestore } from "./firebase_setup/firebase";
 import { getDocs, collection } from "firebase/firestore";
+import { Helmet } from "react-helmet-async";
 
 function App() {
   const [possible, setPossible] = useState([]);
@@ -37,6 +38,9 @@ function App() {
 
   return (
     <div className="App">
+      <Helmet>
+        <title>Foolproof Login System</title>
+      </Helmet>
       {view === "login" && (
         <Login accounts={users} handleLogin={handleLogin} />
       )}
