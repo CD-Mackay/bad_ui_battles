@@ -26,7 +26,7 @@ function App() {
       <div className="span-wrapper">
         <span>({phone.toString().slice(0, 3)})</span>
         <span>-{phone.toString().slice(3, 6)}</span>
-        <span>-{phone.toString().slice(7)}</span>
+        <span>-{phone.toString().slice(6)}</span>
       </div>
     </div>
   );
