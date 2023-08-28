@@ -84,9 +84,7 @@ function App() {
       let newEl = element.join('')
       final.push(newEl);
     };
-    console.log(final)
     final = final.join('/');
-    console.log(final)
     setOutPut(final);
   }
   return (
