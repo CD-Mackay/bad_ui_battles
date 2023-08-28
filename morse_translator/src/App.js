@@ -70,7 +70,6 @@ function App() {
       let newEl = element.split("")
       finalArr.push(newEl)
     }
-    console.log(finalArr);
     let morseArr = [];
     for (let element of finalArr) {
       let subArr = []
@@ -79,8 +78,16 @@ function App() {
         subArr.push(morseChar)
       } morseArr.push(subArr)
     }
-    console.log(morseArr);
     // convert each subarray character into morse
+    let final = []
+    for (let element of morseArr) {
+      let newEl = element.join('')
+      final.push(newEl);
+    };
+    console.log(final)
+    final = final.join('/');
+    console.log(final)
+    setOutPut(final);
   }
   return (
     <div className="App">
