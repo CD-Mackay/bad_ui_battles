@@ -1,9 +1,9 @@
 import './TextInput.css';
 
-function TextInput() {
+function TextInput({ textData, handleTextInput }) {
   return (
     <div>
-      <textarea placeholder="Enter your message here">
+      <textarea placeholder="Enter your message here" value={textData} onChange={(e) => handleTextInput(e)}>
 
       </textarea>
     </div>
