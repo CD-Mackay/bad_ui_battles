@@ -5,6 +5,7 @@ import { useState } from 'react';
 function App() {
 
   const [textData, setTextData] = useState("");
+  const [output, setOutPut] = useState("")
 
   const handleTextInput = (e) => {
     e.preventDefault()
@@ -60,9 +61,32 @@ function App() {
     ")": "-.--.-",
   };
 
+  const translate = () => {
+    // turn string into array of arrays
+    let string = textData;
+    let array = string.split(" ");
+    let finalArr = []
+    for (let element of array) {
+      let newEl = element.split("")
+      finalArr.push(newEl)
+    }
+    console.log(finalArr);
+    let morseArr = [];
+    for (let element of finalArr) {
+      let subArr = []
+      for (let character of element) {
+        let morseChar = morseData[character]
+        subArr.push(morseChar)
+      } morseArr.push(subArr)
+    }
+    console.log(morseArr);
+    // convert each subarray character into morse
+  }
   return (
     <div className="App">
       <TextInput textData={textData} handleTextInput={handleTextInput} />
+      <button onClick={translate}>translate!</button>
+      <p>{output}</p>
     </div>
   );
 }
