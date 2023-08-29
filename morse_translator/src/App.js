@@ -89,6 +89,8 @@ function App() {
   }
   return (
     <div className="App">
+      <h1>Morse Code Translator</h1>
+      <h3>Enter a brief messsage to have it converted to morse code!</h3>
       <TextInput textData={textData} handleTextInput={handleTextInput} />
       <button onClick={translate}>translate!</button>
       <p>{output}</p>
