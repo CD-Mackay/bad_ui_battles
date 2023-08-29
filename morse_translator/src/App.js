@@ -23,9 +23,9 @@ function App() {
 
   const handleTextInput = (e) => {
     e.preventDefault();
-    const { value, name } = e.target;
+    const { value } = e.target;
     const newChar = value.slice(value.length - 1);
-    if (newChar === "" || validateText(newChar)) {
+    if (newChar === "" || validateText(newChar) || newChar === " ") {
       setTextData(value);
     }
   };
