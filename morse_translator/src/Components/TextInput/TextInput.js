@@ -3,7 +3,7 @@ import './TextInput.css';
 function TextInput({ textData, handleTextInput }) {
   return (
     <div>
-      <textarea placeholder="Enter your message here" value={textData} maxlength={250} cols={60} rows={5} onChange={(e) => handleTextInput(e)}>
+      <textarea placeholder="Enter your message here" value={textData} maxLength={250} cols={60} rows={5} onChange={(e) => handleTextInput(e)}>
 
       </textarea>
     </div>
