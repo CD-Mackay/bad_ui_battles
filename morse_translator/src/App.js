@@ -7,9 +7,15 @@ function App() {
   const [output, setOutPut] = useState("");
   const [error, setError] = useState("");
 
+  const showHideError = (s) => {
+    setError(s);
+    setTimeout(() => {
+      setError("")
+    }, 2000);
+  }
   const validateText = (s) => {
     if (!morseData[s]) {
-      setError("Invalid Character");
+      showHideError("Invalid Character");
     } else {
       return true;
     }
@@ -19,7 +25,7 @@ function App() {
     e.preventDefault();
     const { value, name } = e.target;
     const newChar = value.slice(value.length - 1);
-    if (validateText(newChar)) {
+    if (newChar === "" || validateText(newChar)) {
       setTextData(value);
     }
   };
