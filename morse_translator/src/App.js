@@ -14,7 +14,7 @@ function App() {
     }, 2000);
   }
   const validateText = (s) => {
-    if (!morseData[s]) {
+    if (!morseData[s] && !/\s/g.test(s)) {
       showHideError("Invalid Character");
     } else {
       return true;
@@ -25,6 +25,7 @@ function App() {
     e.preventDefault();
     const { value } = e.target;
     const newChar = value.slice(value.length - 1);
+    console.log("newChar:", newChar)
     if (newChar === "" || validateText(newChar) || newChar === " ") {
       setTextData(value);
     }
