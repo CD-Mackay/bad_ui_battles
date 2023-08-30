@@ -1,8 +1,9 @@
 import "./App.css";
 import TextInput from "./Components/TextInput/TextInput";
 import { useState } from "react";
-import morseData from './constants'
-import translate from './helpers'
+import morseChart from "./constants";
+import { translate, reverseTranslate } from "./helpers";
+import MorseInput from "./Components/MorseInput/MorseInput";
 
 function App() {
   const [textData, setTextData] = useState("");
@@ -13,11 +14,11 @@ function App() {
   const showHideError = (s) => {
     setError(s);
     setTimeout(() => {
-      setError("")
+      setError("");
     }, 2000);
-  }
+  };
   const validateText = (s) => {
-    if (!morseData[s] && !/\s/g.test(s)) {
+    if (!morseChart[s] && !/\s/g.test(s)) {
       showHideError("Invalid Character");
     } else {
       return true;
@@ -28,7 +29,7 @@ function App() {
     e.preventDefault();
     const { value } = e.target;
     const newChar = value.slice(value.length - 1);
-    console.log("newChar:", newChar)
+    console.log("newChar:", newChar);
     if (newChar === "" || validateText(newChar) || newChar === " ") {
       setTextData(value);
     }
@@ -38,7 +39,7 @@ function App() {
     e.preventDefault();
     const { value } = e.target;
     const newChar = value.slice(value.length - 1);
-    console.log("newChar:", newChar)
+    console.log("newChar:", newChar);
     if (newChar === "" || validateText(newChar) || newChar === " ") {
       setMorseData(value);
     }
@@ -49,9 +50,14 @@ function App() {
       <h1>Morse Code Translator</h1>
       <h3>Enter a brief messsage to have it converted to morse code!</h3>
       <TextInput textData={textData} handleTextInput={handleTextInput} />
-      <button onClick={() => setOutPut(translate(textData))}>translate!</button>
-      <p>{output}</p>
+      <button onClick={() => setMorseData(translate(textData))}>
+        translate!
+      </button>
+      <p>{morseData}</p>
       <p>{error}</p>
+      <MorseInput morseData={morseData} handleMorseInput={handleMorseInput} />
+      <button onClick={() => setOutPut(reverseTranslate(morseData))}>Reverse!</button>
+      <p>{output}</p>
     </div>
   );
 }
