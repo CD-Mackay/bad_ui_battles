@@ -1,6 +1,7 @@
 import "./App.css";
 import TextInput from "./Components/TextInput/TextInput";
 import { useState } from "react";
+import morseData from './constants'
 
 function App() {
   const [textData, setTextData] = useState("");
@@ -31,54 +32,6 @@ function App() {
     }
   };
 
-  const morseData = {
-    0: "-----",
-    1: ".----",
-    2: "..---",
-    3: "...--",
-    4: "....-",
-    5: ".....",
-    6: "-....",
-    7: "--...",
-    8: "---..",
-    9: "----.",
-    a: ".-",
-    b: "-...",
-    c: "-.-.",
-    d: "-..",
-    e: ".",
-    f: "..-.",
-    g: "--.",
-    h: "....",
-    i: "..",
-    j: ".---",
-    k: "-.-",
-    l: ".-..",
-    m: "--",
-    n: "-.",
-    o: "---",
-    p: ".--.",
-    q: "--.-",
-    r: ".-.",
-    s: "...",
-    t: "-",
-    u: "..-",
-    v: "...-",
-    w: ".--",
-    x: "-..-",
-    y: "-.--",
-    z: "--..",
-    ".": ".-.-.-",
-    ",": "--..--",
-    "?": "..--..",
-    "!": "-.-.--",
-    "-": "-....-",
-    "/": "-..-.",
-    "@": ".--.-.",
-    "(": "-.--.",
-    ")": "-.--.-",
-  };
-
   const translate = () => {
     // turn string into array of arrays
     let string = textData;
@@ -100,7 +53,7 @@ function App() {
     // convert each subarray character into morse
     let final = [];
     for (let element of morseArr) {
-      let newEl = element.join("");
+      let newEl = element.join("*");
       final.push(newEl);
     }
     final = final.join("/");
