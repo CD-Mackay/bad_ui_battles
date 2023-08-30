@@ -6,6 +6,7 @@ import translate from './helpers'
 
 function App() {
   const [textData, setTextData] = useState("");
+  const [morseData, setMorseData] = useState("");
   const [output, setOutPut] = useState("");
   const [error, setError] = useState("");
 
@@ -30,6 +31,16 @@ function App() {
     console.log("newChar:", newChar)
     if (newChar === "" || validateText(newChar) || newChar === " ") {
       setTextData(value);
+    }
+  };
+
+  const handleMorseInput = (e) => {
+    e.preventDefault();
+    const { value } = e.target;
+    const newChar = value.slice(value.length - 1);
+    console.log("newChar:", newChar)
+    if (newChar === "" || validateText(newChar) || newChar === " ") {
+      setMorseData(value);
     }
   };
 
