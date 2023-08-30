@@ -1,11 +1,10 @@
-import "./MorseInput.css";
 
-function MorseInput({ textData, handleMorseInput }) {
+function MorseInput({ morseData, handleMorseInput }) {
   return (
     <div>
       <textarea
         placeholder="Enter your message here"
-        value={textData}
+        value={morseData}
         maxLength={250}
         cols={60}
         rows={5}
