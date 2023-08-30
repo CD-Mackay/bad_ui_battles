@@ -1,4 +1,4 @@
-import morseData from "./constants";
+import morseChart from "./constants";
 
 const translate = (string) => {
   // turn string into array of arrays
@@ -12,7 +12,7 @@ const translate = (string) => {
   for (let element of finalArr) {
     let subArr = [];
     for (let character of element) {
-      let morseChar = morseData[character];
+      let morseChar = morseChart[character];
       subArr.push(morseChar);
     }
     morseArr.push(subArr);
@@ -27,4 +27,29 @@ const translate = (string) => {
   return final;
 };
 
-export default translate;
+const findReverse = (object, character) => {
+  for (const property in object) {
+    if (object[property] === character) {
+      return property;
+    }
+  }
+}
+
+const reverseTranslate = (s) => {
+  let array = s.split("/");
+  console.log(array);
+  let finalArr = [];
+  for (let element of array) {
+    let newEl = element.split("*");
+    let subArr = [];
+    for (let element of newEl) {
+      let char = findReverse(morseChart, element);
+      subArr.push(char);
+    }
+    subArr = subArr.join("")
+    finalArr.push(subArr);
+  }
+  finalArr = finalArr.join(" ");
+  return finalArr;
+};
+export { translate, reverseTranslate };

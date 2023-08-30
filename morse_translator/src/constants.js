@@ -1,4 +1,4 @@
-const morseData = {
+const morseChart = {
   0: "-----",
   1: ".----",
   2: "..---",
@@ -46,4 +46,4 @@ const morseData = {
   ")": "-.--.-",
 };
 
-export default morseData;
+export default morseChart;
