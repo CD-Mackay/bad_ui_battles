@@ -4,6 +4,7 @@ import { useState } from "react";
 import morseChart from "./constants";
 import { translate, reverseTranslate } from "./helpers";
 import MorseInput from "./Components/MorseInput/MorseInput";
+import { Helmet } from "react-helmet-async";
 
 function App() {
   const [textData, setTextData] = useState("");
@@ -47,6 +48,9 @@ function App() {
 
   return (
     <div className="App">
+      <Helmet>
+        <title>Morse Code Translator</title>
+      </Helmet>
       <h1>Morse Code Translator</h1>
       <h3>Enter a brief messsage to have it converted to morse code!</h3>
       <TextInput textData={textData} handleTextInput={handleTextInput} />
