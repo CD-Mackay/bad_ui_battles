@@ -10,7 +10,9 @@ function App() {
     if (/\d/.test(password)) {
       let errorArr = [...error];
       errorArr[0].completed = true;
-      errorArr.push({string: "password must contain the word robot", completed: false});
+      if (!password.includes("robot") && error.length < 2) {
+        errorArr.push({string: "password must contain the word robot", completed: false});
+      }
       console.log(errorArr);
       setError(errorArr);
     }
@@ -28,8 +30,8 @@ function App() {
         <input type="password" value={password} onChange={(e) => handleInput(e)}></input>
       </form>
       <ul>
-        {error.map((element) => {
-          return <li>{element.string}</li>
+        {error.map((element, index) => {
+          return <li key={index}>{element.string}</li>
         })}
       </ul>
     </div>
