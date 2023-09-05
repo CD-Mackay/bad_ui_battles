@@ -12,18 +12,24 @@ function App() {
     console.log(/\d/.test(value), value);
     if (/\d/.test(value)) {
       errorArr[0].completed = true;
-    } else if (!value.includes("robot") && error.length < 2) {
+    }
+    if (!value.includes("robot") && error.length < 2) {
       errorArr.push({
         string: "password must contain the word robot",
         completed: false,
       });
-    } else if (
-      value.includes("robot") &&
-      !value.includes("zoop")
-    ) {
-      let errorArr = [...error];
+    }
+    if (value.includes("robot") && !value.includes("zoop") && error.length < 3) {
+      console.log("third!")
       errorArr[1].completed = true;
       errorArr.push({ string: "password must contain zoop", completed: false });
+    }
+    if (value.includes("zoop") && !value.includes("right")&& error.length < 4) {
+      errorArr[2].completed = true;
+      errorArr.push({string: "After you slide to the left, you must slide to the _____", completed: false})
+    }
+    if (value.includes("right")) {
+      errorArr[3].completed = true;
     }
     console.log(errorArr);
     setError(errorArr);
