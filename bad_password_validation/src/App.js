@@ -16,6 +16,12 @@ function App() {
       console.log(errorArr);
       setError(errorArr);
     }
+  };
+
+  const showReqs = () => {
+    error.map((element, index) => {
+      return <li key={index}>{element.string}</li>
+    })
   }
 
   const handleInput = (e) => {
@@ -30,9 +36,7 @@ function App() {
         <input type="password" value={password} onChange={(e) => handleInput(e)}></input>
       </form>
       <ul>
-        {error.map((element, index) => {
-          return <li key={index}>{element.string}</li>
-        })}
+        {showReqs()}
       </ul>
     </div>
   );
