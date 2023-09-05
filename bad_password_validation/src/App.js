@@ -31,7 +31,6 @@ function App() {
     if (value.includes("right")) {
       errorArr[3].completed = true;
     }
-    console.log(errorArr);
     setError(errorArr);
   };
 
