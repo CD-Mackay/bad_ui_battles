@@ -1,43 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
-import { useState } from 'react';
+import logo from "./logo.svg";
+import "./App.css";
+import { useState } from "react";
 
 function App() {
-
   const [password, setPassword] = useState("");
-  const [error, setError] = useState([{string: "password must contain a number", completed: false}])
-  const validatePass = () => {
-    if (/\d/.test(password)) {
-      let errorArr = [...error];
+  const [error, setError] = useState([
+    { string: "password must contain a number", completed: false },
+  ]);
+  const validatePass = (value) => {
+    let errorArr = [...error];
+    console.log(/\d/.test(value), value);
+    if (/\d/.test(value)) {
       errorArr[0].completed = true;
-      if (!password.includes("robot") && error.length < 2) {
-        errorArr.push({string: "password must contain the word robot", completed: false});
-      }
-      console.log(errorArr);
-      setError(errorArr);
+    } else if (!value.includes("robot") && error.length < 2) {
+      errorArr.push({
+        string: "password must contain the word robot",
+        completed: false,
+      });
+    } else if (
+      value.includes("robot") &&
+      !value.includes("zoop")
+    ) {
+      let errorArr = [...error];
+      errorArr[1].completed = true;
+      errorArr.push({ string: "password must contain zoop", completed: false });
     }
+    console.log(errorArr);
+    setError(errorArr);
   };
 
   const showReqs = () => {
-    error.map((element, index) => {
-      return <li key={index}>{element.string}</li>
-    })
-  }
+    return error.map((element, index) => {
+      return (
+        <li key={index}>
+          {element.string}
+          {element.completed ? "done!" : ""}
+        </li>
+      );
+    });
+  };
 
   const handleInput = (e) => {
     const { value } = e.target;
+    console.log(value);
     setPassword(value);
-    validatePass()
-  }
+    validatePass(value);
+  };
   return (
     <div className="App">
       <form className="user-form">
         <input type="text"></input>
-        <input type="password" value={password} onChange={(e) => handleInput(e)}></input>
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => handleInput(e)}
+        ></input>
       </form>
-      <ul>
-        {showReqs()}
-      </ul>
+      <ul>{showReqs()}</ul>
     </div>
   );
 }
