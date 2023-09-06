@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
+import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai';
 
 function App() {
   const [password, setPassword] = useState("");
@@ -47,6 +48,7 @@ function App() {
       return (
         <li key={index} className={element.completed ? "complete" : "incomplete"}>
           {element.string}
+          {element.completed ? <AiOutlineCheck /> : <AiOutlineClose />}
         </li>
       );
     });
