@@ -8,3 +8,14 @@
   margin: 0 auto;
   width: 400px;
 }
+
+li {
+  list-style-type: none;
+}
+
+.complete {
+color: gray;
+}
+
+.incomplete {
+}

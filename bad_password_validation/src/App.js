@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
+import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai';
 
 function App() {
   const [password, setPassword] = useState("");
@@ -28,8 +29,16 @@ function App() {
       errorArr[2].completed = true;
       errorArr.push({string: "After you slide to the left, you must slide to the _____", completed: false})
     }
-    if (value.includes("right")) {
+    if (value.includes("right") && error.length < 5) {
       errorArr[3].completed = true;
+      errorArr.push({string: "must include the letter z twice", completed: false})
+    }
+    if (value.includes("zz") && error.length < 6) {
+      errorArr[4].completed = true;
+      errorArr.push({string: "press f to pay respects", completed: false})
+    }
+    if (value.includes("f") && error.length < 7) {
+      errorArr[5].completed = true;
     }
     setError(errorArr);
   };
@@ -37,9 +46,9 @@ function App() {
   const showReqs = () => {
     return error.map((element, index) => {
       return (
-        <li key={index}>
+        <li key={index} className={element.completed ? "complete" : "incomplete"}>
           {element.string}
-          {element.completed ? "done!" : ""}
+          {element.completed ? <AiOutlineCheck /> : <AiOutlineClose />}
         </li>
       );
     });
