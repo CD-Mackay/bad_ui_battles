@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
-import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai';
+import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 
 function App() {
   const [password, setPassword] = useState("");
@@ -10,8 +10,7 @@ function App() {
   ]);
   const validatePass = (value) => {
     let errorArr = [...error];
-    console.log(/\d/.test(value), value);
-    if (/\d/.test(value)) {
+    if (/\d/.test(value) && error.length < 2) {
       errorArr[0].completed = true;
     }
     if (!value.includes("robot") && error.length < 2) {
@@ -20,33 +19,57 @@ function App() {
         completed: false,
       });
     }
-    if (value.includes("robot") && !value.includes("zoop") && error.length < 3) {
-      console.log("third!")
-      errorArr[1].completed = true;
-      errorArr.splice(0, 0, { string: "password must contain zoop", completed: false });
+    if (
+      value.includes("robot") &&
+      !value.includes("zoop") &&
+      error.length < 3
+    ) {
+      console.log("third!");
+      errorArr[0].completed = true;
+      errorArr.splice(0, 0, {
+        string: "password must contain zoop",
+        completed: false,
+      });
     }
-    if (value.includes("zoop") && !value.includes("right")&& error.length < 4) {
-      errorArr[2].completed = true;
-      errorArr.splice(0, 0, {string: "After you slide to the left, you must slide to the _____", completed: false})
+    if (
+      value.includes("zoop") &&
+      !value.includes("right") &&
+      error.length < 4
+    ) {
+      errorArr[0].completed = true;
+      errorArr.splice(0, 0, {
+        string: "After you slide to the left, you must slide to the _____",
+        completed: false,
+      });
     }
     if (value.includes("right") && error.length < 5) {
-      errorArr[3].completed = true;
-      errorArr.splice(0, 0, {string: "must include the letter z twice", completed: false})
+      errorArr[0].completed = true;
+      errorArr.splice(0, 0, {
+        string: "must include the letter z twice",
+        completed: false,
+      });
     }
     if (value.includes("zz") && error.length < 6) {
-      errorArr[4].completed = true;
-      errorArr.splice(0, 0, {string: "press f to pay respects", completed: false})
+      errorArr[0].completed = true;
+      errorArr.splice(0, 0, {
+        string: "press f to pay respects",
+        completed: false,
+      });
     }
     if (value.includes("f") && error.length < 7) {
-      errorArr[5].completed = true;
+      errorArr[0].completed = true;
     }
+    console.log(errorArr)
     setError(errorArr);
   };
 
   const showReqs = () => {
     return error.map((element, index) => {
       return (
-        <li key={index} className={element.completed ? "complete" : "incomplete"}>
+        <li
+          key={index}
+          className={element.completed ? "complete" : "incomplete"}
+        >
           {element.string}
           {element.completed ? <AiOutlineCheck /> : <AiOutlineClose />}
         </li>
@@ -56,7 +79,6 @@ function App() {
 
   const handleInput = (e) => {
     const { value } = e.target;
-    console.log(value);
     setPassword(value);
     validatePass(value);
   };
@@ -67,7 +89,7 @@ function App() {
       <form className="user-form">
         <input type="text" placeholder="username"></input>
         <input
-        placeholder="password"
+          placeholder="password"
           type="password"
           value={password}
           onChange={(e) => handleInput(e)}
