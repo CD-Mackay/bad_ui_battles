@@ -24,7 +24,6 @@ function App() {
       !value.includes("zoop") &&
       error.length < 3
     ) {
-      console.log("third!");
       errorArr[0].completed = true;
       errorArr.splice(0, 0, {
         string: "password must contain zoop",
@@ -59,7 +58,6 @@ function App() {
     if (value.includes("f") && error.length < 7) {
       errorArr[0].completed = true;
     }
-    console.log(errorArr)
     setError(errorArr);
   };
 
