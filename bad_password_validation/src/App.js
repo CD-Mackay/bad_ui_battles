@@ -15,7 +15,7 @@ function App() {
       errorArr[0].completed = true;
     }
     if (!value.includes("robot") && error.length < 2) {
-      errorArr.push({
+      errorArr.splice(0, 0, {
         string: "password must contain the word robot",
         completed: false,
       });
@@ -23,19 +23,19 @@ function App() {
     if (value.includes("robot") && !value.includes("zoop") && error.length < 3) {
       console.log("third!")
       errorArr[1].completed = true;
-      errorArr.push({ string: "password must contain zoop", completed: false });
+      errorArr.splice(0, 0, { string: "password must contain zoop", completed: false });
     }
     if (value.includes("zoop") && !value.includes("right")&& error.length < 4) {
       errorArr[2].completed = true;
-      errorArr.push({string: "After you slide to the left, you must slide to the _____", completed: false})
+      errorArr.splice(0, 0, {string: "After you slide to the left, you must slide to the _____", completed: false})
     }
     if (value.includes("right") && error.length < 5) {
       errorArr[3].completed = true;
-      errorArr.push({string: "must include the letter z twice", completed: false})
+      errorArr.splice(0, 0, {string: "must include the letter z twice", completed: false})
     }
     if (value.includes("zz") && error.length < 6) {
       errorArr[4].completed = true;
-      errorArr.push({string: "press f to pay respects", completed: false})
+      errorArr.splice(0, 0, {string: "press f to pay respects", completed: false})
     }
     if (value.includes("f") && error.length < 7) {
       errorArr[5].completed = true;
@@ -62,15 +62,18 @@ function App() {
   };
   return (
     <div className="App">
+      <h3>Welcome to Das App</h3>
+      <p>To register, please enter your username and password</p>
       <form className="user-form">
-        <input type="text"></input>
+        <input type="text" placeholder="username"></input>
         <input
+        placeholder="password"
           type="password"
           value={password}
           onChange={(e) => handleInput(e)}
         ></input>
       </form>
-      <ul>{showReqs()}</ul>
+      <ul>{password.length > 0 && showReqs()}</ul>
     </div>
   );
 }
