@@ -8,7 +8,7 @@ function App() {
   const [error, setError] = useState([
     { string: "password must contain a number", completed: false },
   ]);
-  const validatePass = (value) => {
+  const validatePass = (value) => { // Too much randomness in passwords, need to find a way to only complete the validation step
     let errorArr = [...error];
     if (/\d/.test(value) && error.length < 2) {
       errorArr[0].completed = true;
@@ -73,7 +73,7 @@ function App() {
           className={element.completed ? "complete" : "incomplete"}
         >
           {element.string}
-          {element.completed ? <AiOutlineCheck /> : <AiOutlineClose />}
+          {element.completed ? <AiOutlineCheck color="green" /> : <AiOutlineClose color="red" />}
         </li>
       );
     });
