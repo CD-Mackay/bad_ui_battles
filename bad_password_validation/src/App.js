@@ -13,6 +13,9 @@ function App() {
     if (/\d/.test(value) && error.length < 2) {
       errorArr[0].completed = true;
     }
+    if (/\d/.test(value) && error.length < 3) {
+      errorArr[1].completed = true;
+    }
     if (!value.includes("robot") && error.length < 2) {
       errorArr.splice(0, 0, {
         string: "password must contain the word robot",
@@ -58,6 +61,7 @@ function App() {
     if (value.includes("f") && error.length < 7) {
       errorArr[0].completed = true;
     }
+    console.log(errorArr);
     setError(errorArr);
   };
 
