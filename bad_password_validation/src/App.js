@@ -9,7 +9,6 @@ function App() {
     "password must contain a number": false,
   });
   const validatePass = (value) => {
-    // Too much randomness in passwords, need to find a way to only complete the validation step
     let errorObj = { ...error };
     if (/\d/.test(value)) {
       errorObj["password must contain a number"] = true;
@@ -39,7 +38,6 @@ function App() {
     if (value.includes("f")) {
       errorObj["press f to pay respects"] = true;
     }
-    console.log(errorObj);
     setError(errorObj);
   };
 
@@ -51,7 +49,12 @@ function App() {
           index={index}
           className={error[key] === true ? "complete" : "incomplete"}
         >
-          {key} {error[key] === true ? <AiOutlineCheck color="green" /> : <AiOutlineClose color="red" />}
+          {key}{" "}
+          {error[key] === true ? (
+            <AiOutlineCheck color="green" />
+          ) : (
+            <AiOutlineClose color="red" />
+          )}
         </li>
       );
     });
