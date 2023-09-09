@@ -51,7 +51,7 @@ function App() {
           index={index}
           className={error[key] === true ? "complete" : "incomplete"}
         >
-          {key}
+          {key} {error[key] === true ? <AiOutlineCheck color="green" /> : <AiOutlineClose color="red" />}
         </li>
       );
     });
