@@ -4,19 +4,44 @@ import Input from './Components/Input/Input';
 
 function App() {
 
+  let inputArr = [
+    {
+      type: "text",
+      key: 1,
+      field: "username",
+      label: "username",
+    },
+    {
+      type: "password",
+      key: 2,
+      field: "password",
+      label: "password",
+    },
+    {
+      type: "password",
+      key: 3,
+      field: "passConfirm",
+      label: "confirm password",
+    },
+  ];
+
+  
+  // State Declarations
   const [inputValue, setInputValue] = useState({
     username: "",
     password: "",
     passConfirm: "",
   });
-
   const [view, setView] = useState("login");
-
-  const inputRef = useRef(null);
-  const hiddenInput = document.getElementById("hidden-input");
   const [error, setError] = useState({
     "password must contain a number": false,
   });
+  const [inputs, setInputs] = useState(inputArr);
+
+
+  const inputRef = useRef(null);
+  const hiddenInput = document.getElementById("hidden-input");
+  
   const validatePass = (value) => {
     let errorObj = { ...error };
     if (/\d/.test(value)) {
@@ -77,29 +102,6 @@ function App() {
     console.log(hiddenInput);
     hiddenInput.focus();
   };
-
-  let inputArr = [
-    {
-      type: "text",
-      key: 1,
-      field: "username",
-      label: "username",
-    },
-    {
-      type: "password",
-      key: 2,
-      field: "password",
-      label: "password",
-    },
-    {
-      type: "password",
-      key: 3,
-      field: "passConfirm",
-      label: "confirm password",
-    },
-  ];
-
-  const [inputs, setInputs] = useState(inputArr);
 
   const shuffleInputs = (array) => {
     const newArr = [...array];
