@@ -1,6 +1,8 @@
 import "./App.css";
 import { useEffect, useState, useRef } from "react";
 import Input from "./Components/Input/Input";
+import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
+
 
 function App() {
   let inputArr = [
@@ -81,11 +83,11 @@ function App() {
           className={error[key] === true ? "complete" : "incomplete"}
         >
           {key}{" "}
-          {/* {error[key] === true ? (
+          {error[key] === true ? (
             <AiOutlineCheck color="green" />
           ) : (
             <AiOutlineClose color="red" />
-          )} */}
+          )}
         </li>
       );
     });
@@ -158,6 +160,7 @@ function App() {
           />
         );
       })}
+      <button onClick={handleLogin}>Register</button>
       {showReqs()}
       <input type="button" id="hidden-input" />
     </div>
