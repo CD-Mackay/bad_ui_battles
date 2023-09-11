@@ -1,9 +1,8 @@
-import './App.css';
-import { useEffect, useState, useRef} from 'react';
-import Input from './Components/Input/Input';
+import "./App.css";
+import { useEffect, useState, useRef } from "react";
+import Input from "./Components/Input/Input";
 
 function App() {
-
   let inputArr = [
     {
       type: "text",
@@ -25,7 +24,6 @@ function App() {
     },
   ];
 
-  
   // State Declarations
   const [inputValue, setInputValue] = useState({
     username: "",
@@ -38,10 +36,9 @@ function App() {
   });
   const [inputs, setInputs] = useState(inputArr);
 
-
   const inputRef = useRef(null);
   const hiddenInput = document.getElementById("hidden-input");
-  
+
   const validatePass = (value) => {
     let errorObj = { ...error };
     if (/\d/.test(value)) {
@@ -115,6 +112,9 @@ function App() {
     e.preventDefault();
     const { value, name } = e.target;
     console.log("value", value, "name", name);
+    if (name === "password") {
+      validatePass(value);
+    }
     setInputValue((prevNote) => ({
       ...prevNote,
       [name]: value,
@@ -145,19 +145,21 @@ function App() {
 
   return (
     <div className="App">
-        {inputs.map((element) => {
-            return (
-              <Input
-                type={element.type}
-                inputRef={inputRef}
-                onChange={(e) => handleShuffle(e)}
-                key={element.key}
-                name={element.field}
-                inputValue={inputValue}
-                label={element.label}
-              />
-            );
-          })}
+      {inputs.map((element) => {
+        return (
+          <Input
+            type={element.type}
+            inputRef={inputRef}
+            onChange={(e) => handleShuffle(e)}
+            key={element.key}
+            name={element.field}
+            inputValue={inputValue}
+            label={element.label}
+          />
+        );
+      })}
+      {showReqs()}
+      <input type="button" id="hidden-input" />
     </div>
   );
 }
