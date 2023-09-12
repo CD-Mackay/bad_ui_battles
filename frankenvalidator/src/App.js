@@ -3,7 +3,6 @@ import { useEffect, useState, useRef } from "react";
 import Input from "./Components/Input/Input";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 
-
 function App() {
   let inputArr = [
     {
@@ -147,22 +146,27 @@ function App() {
 
   return (
     <div className="App">
-      {inputs.map((element) => {
-        return (
-          <Input
-            type={element.type}
-            inputRef={inputRef}
-            onChange={(e) => handleShuffle(e)}
-            key={element.key}
-            name={element.field}
-            inputValue={inputValue}
-            label={element.label}
-          />
-        );
-      })}
-      <button onClick={handleLogin}>Register</button>
-      {showReqs()}
-      <input type="button" id="hidden-input" />
+      {view === "username" && (
+        <div>
+          {inputs.map((element) => {
+            return (
+              <Input
+                type={element.type}
+                inputRef={inputRef}
+                onChange={(e) => handleShuffle(e)}
+                key={element.key}
+                name={element.field}
+                inputValue={inputValue}
+                label={element.label}
+              />
+            );
+          })}
+          <button onClick={handleLogin}>Register</button>
+          {showReqs()}
+          <input type="button" id="hidden-input" />
+        </div>
+      )}
+      {view === "phone-number" && <div></div>}
     </div>
   );
 }
