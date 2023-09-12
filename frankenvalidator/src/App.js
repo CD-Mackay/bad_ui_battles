@@ -175,9 +175,11 @@ function App() {
         </div>
       )}
       {view === "phone-number" && <div>
+        {/* Add color based phone picker */}
         <button onClick={handleRegisterPhone}>Continue</button>
         </div>}
         {view === "address" && <div>
+          {/* Add Morse code input to register address */}
           <button onClick={handleRegisterAddress}>Continue</button></div>}
     </div>
   );
