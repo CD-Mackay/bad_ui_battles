@@ -73,6 +73,14 @@ function App() {
     setError(errorObj);
   };
 
+  const handleRegisterPhone = () => {
+    setView("address")
+  };
+
+  const handleRegisterAddress = () => {
+    setView("success")
+  }
+
   const showReqs = () => {
     let array = [];
     Object.keys(error).forEach(function (key, index) {
@@ -122,7 +130,7 @@ function App() {
     }));
   };
 
-  const handleLogin = () => {
+  const handleRegisterUsername = () => {
     if (
       inputValue.password === inputValue.passConfirm &&
       inputValue.password !== ""
@@ -161,12 +169,16 @@ function App() {
               />
             );
           })}
-          <button onClick={handleLogin}>Register</button>
+          <button onClick={handleRegisterUsername}>Continue</button>
           {showReqs()}
           <input type="button" id="hidden-input" />
         </div>
       )}
-      {view === "phone-number" && <div></div>}
+      {view === "phone-number" && <div>
+        <button onClick={handleRegisterPhone}>Continue</button>
+        </div>}
+        {view === "address" && <div>
+          <button onClick={handleRegisterAddress}>Continue</button></div>}
     </div>
   );
 }
