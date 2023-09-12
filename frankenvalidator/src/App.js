@@ -31,7 +31,7 @@ function App() {
     password: "",
     passConfirm: "",
   });
-  const [view, setView] = useState("login");
+  const [view, setView] = useState("username");
   const [error, setError] = useState({
     "password must contain a number": false,
   });
@@ -127,7 +127,7 @@ function App() {
       inputValue.password === inputValue.passConfirm &&
       inputValue.password !== ""
     ) {
-      setView("success");
+      setView("phone-number");
     }
   };
 
