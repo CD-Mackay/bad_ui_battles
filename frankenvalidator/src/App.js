@@ -3,7 +3,6 @@ import { useEffect, useState, useRef } from "react";
 import Input from "./Components/Input/Input";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 
-
 function App() {
   let inputArr = [
     {
@@ -32,7 +31,7 @@ function App() {
     password: "",
     passConfirm: "",
   });
-  const [view, setView] = useState("login");
+  const [view, setView] = useState("username");
   const [error, setError] = useState({
     "password must contain a number": false,
   });
@@ -73,6 +72,14 @@ function App() {
     }
     setError(errorObj);
   };
+
+  const handleRegisterPhone = () => {
+    setView("address")
+  };
+
+  const handleRegisterAddress = () => {
+    setView("success")
+  }
 
   const showReqs = () => {
     let array = [];
@@ -123,12 +130,12 @@ function App() {
     }));
   };
 
-  const handleLogin = () => {
+  const handleRegisterUsername = () => {
     if (
       inputValue.password === inputValue.passConfirm &&
       inputValue.password !== ""
     ) {
-      setView("success");
+      setView("phone-number");
     }
   };
 
@@ -147,22 +154,33 @@ function App() {
 
   return (
     <div className="App">
-      {inputs.map((element) => {
-        return (
-          <Input
-            type={element.type}
-            inputRef={inputRef}
-            onChange={(e) => handleShuffle(e)}
-            key={element.key}
-            name={element.field}
-            inputValue={inputValue}
-            label={element.label}
-          />
-        );
-      })}
-      <button onClick={handleLogin}>Register</button>
-      {showReqs()}
-      <input type="button" id="hidden-input" />
+      {view === "username" && (
+        <div>
+          {inputs.map((element) => {
+            return (
+              <Input
+                type={element.type}
+                inputRef={inputRef}
+                onChange={(e) => handleShuffle(e)}
+                key={element.key}
+                name={element.field}
+                inputValue={inputValue}
+                label={element.label}
+              />
+            );
+          })}
+          <button onClick={handleRegisterUsername}>Continue</button>
+          {showReqs()}
+          <input type="button" id="hidden-input" />
+        </div>
+      )}
+      {view === "phone-number" && <div>
+        {/* Add color based phone picker */}
+        <button onClick={handleRegisterPhone}>Continue</button>
+        </div>}
+        {view === "address" && <div>
+          {/* Add Morse code input to register address */}
+          <button onClick={handleRegisterAddress}>Continue</button></div>}
     </div>
   );
 }
