@@ -32,10 +32,142 @@ function App() {
     passConfirm: "",
   });
   const [phone, setPhone] = useState("5555555555")
-  const [view, setView] = useState("phone-number");
+  const [view, setView] = useState("address");
   const [error, setError] = useState({
     "password must contain a number": false,
   });
+
+  const morseData = {
+    0: "-----",
+    1: ".----",
+    2: "..---",
+    3: "...--",
+    4: "....-",
+    5: ".....",
+    6: "-....",
+    7: "--...",
+    8: "---..",
+    9: "----.",
+    a: ".-",
+    b: "-...",
+    c: "-.-.",
+    d: "-..",
+    e: ".",
+    f: "..-.",
+    g: "--.",
+    h: "....",
+    i: "..",
+    j: ".---",
+    k: "-.-",
+    l: ".-..",
+    m: "--",
+    n: "-.",
+    o: "---",
+    p: ".--.",
+    q: "--.-",
+    r: ".-.",
+    s: "...",
+    t: "-",
+    u: "..-",
+    v: "...-",
+    w: ".--",
+    x: "-..-",
+    y: "-.--",
+    z: "--..",
+    ".": ".-.-.-",
+    ",": "--..--",
+    "?": "..--..",
+    "!": "-.-.--",
+    "-": "-....-",
+    "/": "-..-.",
+    "@": ".--.-.",
+    "(": "-.--.",
+    ")": "-.--.-",
+  };
+  
+  const morseArr = [
+    ["0", "-----"],
+    ["1", ".----"],
+    ["2", "..---"],
+    ["3", "...--"],
+    ["4", "....-"],
+    ["5", "....."],
+    ["6", "-...."],
+    ["7", "--..."],
+    ["8", "---.."],
+    ["9", "----."],
+    ["a", ".-"],
+    ["b", "-..."],
+    ["c", "-.-."],
+    ["d", "-.."],
+    ["e", "."],
+    ["f", "..-."],
+    ["g", "--."],
+    ["h", "...."],
+    ["i", ".."],
+    ["j", ".---"],
+    ["k", "-.-"],
+    ["l", ".-.."],
+    ["m", "--"],
+    ["n", "-."],
+    ["o", "---"],
+    ["p", ".--."],
+    ["q", "--.-"],
+    ["r", ".-."],
+    ["s", "..."],
+    ["t", "-"],
+    ["u", "..-"],
+    ["v", "...-"],
+    ["w", ".--"],
+    ["x", "-..-"],
+    ["y", "-.--"],
+    ["z", "--.."],
+    [".", ".-.-.-"],
+    [",", "--..--"],
+    ["?", "..--.."],
+    ["!", "-.-.--"],
+    ["-", "-....-"],
+    ["/", "-..-."],
+    ["@", ".--.-."],
+    ["(", "-.--."],
+    [")", "-.--.-"],
+  ];
+
+  const [stringFrag, setStringFrag] = useState("");
+  const [fullString, setFullString] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showChart, setShowChart] = useState(false);
+
+  const addChar = (newChar) => {
+    let stringCopy = fullString;
+    stringCopy = stringCopy + newChar;
+    setFullString(stringCopy);
+  };
+
+  const addCodeFrag = (code) => {
+    let codeCopy = stringFrag;
+    codeCopy = codeCopy + code;
+    setStringFrag(codeCopy);
+  };
+
+  const translateCode = () => {
+    const newChar = Object.keys(morseData, stringFrag).find(
+      (key) => morseData[key] === stringFrag
+    );
+    if (newChar !== undefined) {
+      addChar(newChar);
+    } else {
+      showError();
+    }
+    setStringFrag("");
+  };
+
+  const showError = () => {
+    setErrorMessage("Not a valid character");
+    setTimeout(() => {
+      setErrorMessage("");
+    }, 2000);
+  };
   const [inputs, setInputs] = useState(inputArr);
 
   const inputRef = useRef(null);
@@ -199,6 +331,35 @@ function App() {
         </div>}
         {view === "address" && <div>
           {/* Add Morse code input to register address */}
+          <textarea disabled value={fullString}></textarea>
+      <div className="button-wrapper">
+        <div className="input-wrapper">
+          <button
+            variant="outline-primary"
+            size="md"
+            onClick={() => addCodeFrag(".")}
+          >
+            .
+          </button>
+          <button
+            variant="outline-primary"
+            size="md"
+            onClick={() => addCodeFrag("-")}
+          >
+            -
+          </button>
+        </div>
+        <button variant="success" size="sm" onClick={translateCode}>
+          Enter
+        </button>
+      </div>
+      <span>Current pattern: {stringFrag}</span>
+      <span>
+        Current character:
+        {Object.keys(morseData, stringFrag).find(
+          (key) => morseData[key] === stringFrag
+        )}
+      </span>
           <button onClick={handleRegisterAddress}>Continue</button></div>}
     </div>
   );
