@@ -4,38 +4,6 @@ import Input from "./Components/Input/Input";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 
 function App() {
-  let inputArr = [
-    {
-      type: "text",
-      key: 1,
-      field: "username",
-      label: "username",
-    },
-    {
-      type: "password",
-      key: 2,
-      field: "password",
-      label: "password",
-    },
-    {
-      type: "password",
-      key: 3,
-      field: "passConfirm",
-      label: "confirm password",
-    },
-  ];
-
-  // State Declarations
-  const [inputValue, setInputValue] = useState({
-    username: "",
-    password: "",
-    passConfirm: "",
-  });
-  const [phone, setPhone] = useState("5555555555")
-  const [view, setView] = useState("address");
-  const [error, setError] = useState({
-    "password must contain a number": false,
-  });
 
   const morseData = {
     0: "-----",
@@ -132,6 +100,38 @@ function App() {
     ["(", "-.--."],
     [")", "-.--.-"],
   ];
+  let inputArr = [
+    {
+      type: "text",
+      key: 1,
+      field: "username",
+      label: "username",
+    },
+    {
+      type: "password",
+      key: 2,
+      field: "password",
+      label: "password",
+    },
+    {
+      type: "password",
+      key: 3,
+      field: "passConfirm",
+      label: "confirm password",
+    },
+  ];
+
+  // State Declarations
+  const [inputValue, setInputValue] = useState({
+    username: "",
+    password: "",
+    passConfirm: "",
+  });
+  const [phone, setPhone] = useState("5555555555")
+  const [view, setView] = useState("address");
+  const [error, setError] = useState({
+    "password must contain a number": false,
+  });
 
   const [stringFrag, setStringFrag] = useState("");
   const [fullString, setFullString] = useState("");
