@@ -2,6 +2,7 @@ import "./App.css";
 import { useEffect, useState, useRef } from "react";
 import Input from "./Components/Input/Input";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
+import { morseArr, morseData } from "./data";
 
 function App() {
   let inputArr = [
@@ -31,10 +32,47 @@ function App() {
     password: "",
     passConfirm: "",
   });
-  const [view, setView] = useState("username");
+  const [phone, setPhone] = useState("5555555555")
+  const [view, setView] = useState("address");
   const [error, setError] = useState({
     "password must contain a number": false,
   });
+
+  const [stringFrag, setStringFrag] = useState("");
+  const [fullString, setFullString] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showChart, setShowChart] = useState(false);
+
+  const addChar = (newChar) => {
+    let stringCopy = fullString;
+    stringCopy = stringCopy + newChar;
+    setFullString(stringCopy);
+  };
+
+  const addCodeFrag = (code) => {
+    let codeCopy = stringFrag;
+    codeCopy = codeCopy + code;
+    setStringFrag(codeCopy);
+  };
+
+  const translateCode = () => {
+    const newChar = Object.keys(morseData, stringFrag).find(
+      (key) => morseData[key] === stringFrag
+    );
+    if (newChar !== undefined) {
+      addChar(newChar);
+    } else {
+      showError();
+    }
+    setStringFrag("");
+  };
+
+  const showError = () => {
+    setErrorMessage("Not a valid character");
+    setTimeout(() => {
+      setErrorMessage("");
+    }, 2000);
+  };
   const [inputs, setInputs] = useState(inputArr);
 
   const inputRef = useRef(null);
@@ -130,6 +168,10 @@ function App() {
     }));
   };
 
+  const handlePhoneChange = (e) => {
+    setPhone(e.target.value);
+  };
+
   const handleRegisterUsername = () => {
     if (
       inputValue.password === inputValue.passConfirm &&
@@ -176,10 +218,53 @@ function App() {
       )}
       {view === "phone-number" && <div>
         {/* Add color based phone picker */}
+        <h4>Please Input your phone number to proceed</h4>
+      <input
+        id="slider"
+        type="range"
+        min="1111111111"
+        value={phone}
+        onChange={(e) => handlePhoneChange(e)}
+        max="9999999999"
+      />
+      <div className="span-wrapper">
+        <span>({phone.toString().slice(0, 3)})</span>
+        <span>-{phone.toString().slice(3, 6)}</span>
+        <span>-{phone.toString().slice(6)}</span>
+      </div>
         <button onClick={handleRegisterPhone}>Continue</button>
         </div>}
         {view === "address" && <div>
           {/* Add Morse code input to register address */}
+          <textarea disabled value={fullString}></textarea>
+      <div className="button-wrapper">
+        <div className="input-wrapper">
+          <button
+            variant="outline-primary"
+            size="md"
+            onClick={() => addCodeFrag(".")}
+          >
+            .
+          </button>
+          <button
+            variant="outline-primary"
+            size="md"
+            onClick={() => addCodeFrag("-")}
+          >
+            -
+          </button>
+        </div>
+        <button variant="success" size="sm" onClick={translateCode}>
+          Enter
+        </button>
+      </div>
+      <span>Current pattern: {stringFrag}</span>
+      <span>
+        Current character:
+        {Object.keys(morseData, stringFrag).find(
+          (key) => morseData[key] === stringFrag
+        )}
+      </span>
           <button onClick={handleRegisterAddress}>Continue</button></div>}
     </div>
   );
