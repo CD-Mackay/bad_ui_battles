@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import Input from "./Components/Input/Input";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import { morseArr, morseData } from "./data";
+import { validatePass } from "./helpers";
 
 function App() {
   let inputArr = [
@@ -78,38 +79,6 @@ function App() {
   const inputRef = useRef(null);
   const hiddenInput = document.getElementById("hidden-input");
 
-  const validatePass = (value) => {
-    let errorObj = { ...error };
-    if (/\d/.test(value)) {
-      errorObj["password must contain a number"] = true;
-      errorObj["password must include the word robot"] = false;
-    }
-
-    if (value.includes("robot")) {
-      errorObj["password must include the word robot"] = true;
-      errorObj["password must contain the phrase zoop"] = false;
-    }
-    if (value.includes("zoop")) {
-      errorObj["password must contain the phrase zoop"] = true;
-      errorObj[
-        "after you slide to the left, you must slide to the ______"
-      ] = false;
-    }
-    if (value.includes("right")) {
-      errorObj[
-        "after you slide to the left, you must slide to the ______"
-      ] = true;
-      errorObj["password must contain zz"] = false;
-    }
-    if (value.includes("zz")) {
-      errorObj["password must contain zz"] = true;
-      errorObj["press f to pay respects"] = false;
-    }
-    if (value.includes("f")) {
-      errorObj["press f to pay respects"] = true;
-    }
-    setError(errorObj);
-  };
 
   const handleRegisterPhone = () => {
     setView("address")
@@ -160,7 +129,8 @@ function App() {
     const { value, name } = e.target;
     console.log("value", value, "name", name);
     if (name === "password") {
-      validatePass(value);
+      // validatePass(value);
+      setError(validatePass(value, error));
     }
     setInputValue((prevNote) => ({
       ...prevNote,
