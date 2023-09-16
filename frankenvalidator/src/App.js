@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import Input from "./Components/Input/Input";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import { morseArr, morseData } from "./data";
-import { validatePass, addCodeFrag } from "./helpers";
+import { validatePass, addCodeFrag, addChar } from "./helpers";
 
 function App() {
   let inputArr = [
@@ -44,20 +44,12 @@ function App() {
   const [errorMessage, setErrorMessage] = useState("");
   const [showChart, setShowChart] = useState(false);
 
-  const addChar = (newChar) => {
-    let stringCopy = fullString;
-    stringCopy = stringCopy + newChar;
-    // setFullString(stringCopy);
-    return stringCopy;
-  };
-
   const translateCode = () => {
     const newChar = Object.keys(morseData, stringFrag).find(
       (key) => morseData[key] === stringFrag
     );
     if (newChar !== undefined) {
-      // addChar(newChar);
-      setFullString(addChar(newChar));
+      setFullString(addChar(newChar, fullString));
     } else {
       showError();
     }

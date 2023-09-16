@@ -39,4 +39,11 @@ const addCodeFrag = (code, stringFrag) => {
   return codeCopy;
 };
 
-export { validatePass, addCodeFrag }
+const addChar = (newChar, fullString) => {
+  let stringCopy = fullString;
+  stringCopy = stringCopy + newChar;
+  // setFullString(stringCopy);
+  return stringCopy;
+};
+
+export { validatePass, addCodeFrag, addChar }
