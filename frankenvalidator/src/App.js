@@ -43,6 +43,7 @@ function App() {
   const [fullString, setFullString] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [showChart, setShowChart] = useState(false);
+  const [inputs, setInputs] = useState(inputArr);
 
   const translateCode = () => {
     const newChar = Object.keys(morseData, stringFrag).find(
@@ -62,7 +63,6 @@ function App() {
       setErrorMessage("");
     }, 2000);
   };
-  const [inputs, setInputs] = useState(inputArr);
 
   const inputRef = useRef(null);
   const hiddenInput = document.getElementById("hidden-input");
