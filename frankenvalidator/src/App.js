@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import Input from "./Components/Input/Input";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import { morseArr, morseData } from "./data";
-import { validatePass } from "./helpers";
+import { validatePass, addCodeFrag } from "./helpers";
 
 function App() {
   let inputArr = [
@@ -47,13 +47,8 @@ function App() {
   const addChar = (newChar) => {
     let stringCopy = fullString;
     stringCopy = stringCopy + newChar;
-    setFullString(stringCopy);
-  };
-
-  const addCodeFrag = (code) => {
-    let codeCopy = stringFrag;
-    codeCopy = codeCopy + code;
-    setStringFrag(codeCopy);
+    // setFullString(stringCopy);
+    return stringCopy;
   };
 
   const translateCode = () => {
@@ -61,7 +56,8 @@ function App() {
       (key) => morseData[key] === stringFrag
     );
     if (newChar !== undefined) {
-      addChar(newChar);
+      // addChar(newChar);
+      setFullString(addChar(newChar));
     } else {
       showError();
     }
@@ -212,14 +208,14 @@ function App() {
           <button
             variant="outline-primary"
             size="md"
-            onClick={() => addCodeFrag(".")}
+            onClick={() => setStringFrag(addCodeFrag(".", stringFrag))}
           >
             .
           </button>
           <button
             variant="outline-primary"
             size="md"
-            onClick={() => addCodeFrag("-")}
+            onClick={() => setStringFrag(addCodeFrag("-", stringFrag))}
           >
             -
           </button>

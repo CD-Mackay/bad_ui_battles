@@ -32,4 +32,11 @@ const validatePass = (value, error) => {
   return errorObj;
 };
 
-export { validatePass }
+const addCodeFrag = (code, stringFrag) => {
+  let codeCopy = stringFrag;
+  codeCopy = codeCopy + code;
+  // setStringFrag(codeCopy);
+  return codeCopy;
+};
+
+export { validatePass, addCodeFrag }
