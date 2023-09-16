@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import Input from "./Components/Input/Input";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import { morseArr, morseData } from "./data";
+import { validatePass, addCodeFrag, addChar } from "./helpers";
 
 function App() {
   let inputArr = [
@@ -42,25 +43,14 @@ function App() {
   const [fullString, setFullString] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [showChart, setShowChart] = useState(false);
-
-  const addChar = (newChar) => {
-    let stringCopy = fullString;
-    stringCopy = stringCopy + newChar;
-    setFullString(stringCopy);
-  };
-
-  const addCodeFrag = (code) => {
-    let codeCopy = stringFrag;
-    codeCopy = codeCopy + code;
-    setStringFrag(codeCopy);
-  };
+  const [inputs, setInputs] = useState(inputArr);
 
   const translateCode = () => {
     const newChar = Object.keys(morseData, stringFrag).find(
       (key) => morseData[key] === stringFrag
     );
     if (newChar !== undefined) {
-      addChar(newChar);
+      setFullString(addChar(newChar, fullString));
     } else {
       showError();
     }
@@ -73,43 +63,10 @@ function App() {
       setErrorMessage("");
     }, 2000);
   };
-  const [inputs, setInputs] = useState(inputArr);
 
   const inputRef = useRef(null);
   const hiddenInput = document.getElementById("hidden-input");
 
-  const validatePass = (value) => {
-    let errorObj = { ...error };
-    if (/\d/.test(value)) {
-      errorObj["password must contain a number"] = true;
-      errorObj["password must include the word robot"] = false;
-    }
-
-    if (value.includes("robot")) {
-      errorObj["password must include the word robot"] = true;
-      errorObj["password must contain the phrase zoop"] = false;
-    }
-    if (value.includes("zoop")) {
-      errorObj["password must contain the phrase zoop"] = true;
-      errorObj[
-        "after you slide to the left, you must slide to the ______"
-      ] = false;
-    }
-    if (value.includes("right")) {
-      errorObj[
-        "after you slide to the left, you must slide to the ______"
-      ] = true;
-      errorObj["password must contain zz"] = false;
-    }
-    if (value.includes("zz")) {
-      errorObj["password must contain zz"] = true;
-      errorObj["press f to pay respects"] = false;
-    }
-    if (value.includes("f")) {
-      errorObj["press f to pay respects"] = true;
-    }
-    setError(errorObj);
-  };
 
   const handleRegisterPhone = () => {
     setView("address")
@@ -160,7 +117,8 @@ function App() {
     const { value, name } = e.target;
     console.log("value", value, "name", name);
     if (name === "password") {
-      validatePass(value);
+      // validatePass(value);
+      setError(validatePass(value, error));
     }
     setInputValue((prevNote) => ({
       ...prevNote,
@@ -242,14 +200,14 @@ function App() {
           <button
             variant="outline-primary"
             size="md"
-            onClick={() => addCodeFrag(".")}
+            onClick={() => setStringFrag(addCodeFrag(".", stringFrag))}
           >
             .
           </button>
           <button
             variant="outline-primary"
             size="md"
-            onClick={() => addCodeFrag("-")}
+            onClick={() => setStringFrag(addCodeFrag("-", stringFrag))}
           >
             -
           </button>
