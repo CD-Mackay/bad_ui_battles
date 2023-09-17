@@ -4,6 +4,8 @@ import Input from "./Components/Input/Input";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import { morseArr, morseData } from "./data";
 import { validatePass, addCodeFrag, addChar } from "./helpers";
+import { Alert } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.css";
 
 function App() {
   let inputArr = [
@@ -33,7 +35,7 @@ function App() {
     password: "",
     passConfirm: "",
   });
-  const [phone, setPhone] = useState("5555555555")
+  const [phone, setPhone] = useState("5555555555");
   const [view, setView] = useState("address");
   const [error, setError] = useState({
     "password must contain a number": false,
@@ -67,14 +69,13 @@ function App() {
   const inputRef = useRef(null);
   const hiddenInput = document.getElementById("hidden-input");
 
-
   const handleRegisterPhone = () => {
-    setView("address")
+    setView("address");
   };
 
   const handleRegisterAddress = () => {
-    setView("success")
-  }
+    setView("success");
+  };
 
   const showReqs = () => {
     let array = [];
@@ -174,54 +175,60 @@ function App() {
           <input type="button" id="hidden-input" />
         </div>
       )}
-      {view === "phone-number" && <div>
-        <h4>Please Input your phone number to proceed</h4>
-      <input
-        id="slider"
-        type="range"
-        min="1111111111"
-        value={phone}
-        onChange={(e) => handlePhoneChange(e)}
-        max="9999999999"
-      />
-      <div className="span-wrapper">
-        <span>({phone.toString().slice(0, 3)})</span>
-        <span>-{phone.toString().slice(3, 6)}</span>
-        <span>-{phone.toString().slice(6)}</span>
-      </div>
-        <button onClick={handleRegisterPhone}>Continue</button>
-        </div>}
-        {view === "address" && <div>
-          <textarea disabled value={fullString}></textarea>
-      <div className="button-wrapper">
-        <div className="input-wrapper">
-          <button
-            variant="outline-primary"
-            size="md"
-            onClick={() => setStringFrag(addCodeFrag(".", stringFrag))}
-          >
-            .
-          </button>
-          <button
-            variant="outline-primary"
-            size="md"
-            onClick={() => setStringFrag(addCodeFrag("-", stringFrag))}
-          >
-            -
-          </button>
+      {view === "phone-number" && (
+        <div>
+          <h4>Please Input your phone number to proceed</h4>
+          <input
+            id="slider"
+            type="range"
+            min="1111111111"
+            value={phone}
+            onChange={(e) => handlePhoneChange(e)}
+            max="9999999999"
+          />
+          <div className="span-wrapper">
+            <span>({phone.toString().slice(0, 3)})</span>
+            <span>-{phone.toString().slice(3, 6)}</span>
+            <span>-{phone.toString().slice(6)}</span>
+          </div>
+          <button onClick={handleRegisterPhone}>Continue</button>
         </div>
-        <button variant="success" size="sm" onClick={translateCode}>
-          Enter
-        </button>
-      </div>
-      <span>Current pattern: {stringFrag}</span>
-      <span>
-        Current character:
-        {Object.keys(morseData, stringFrag).find(
-          (key) => morseData[key] === stringFrag
-        )}
-      </span>
-          <button onClick={handleRegisterAddress}>Continue</button></div>}
+      )}
+      {view === "address" && (
+        <div>
+          <textarea disabled value={fullString}></textarea>
+          <div className="button-wrapper">
+            <div className="input-wrapper">
+              <button
+                variant="outline-primary"
+                size="md"
+                onClick={() => setStringFrag(addCodeFrag(".", stringFrag))}
+              >
+                .
+              </button>
+              <button
+                variant="outline-primary"
+                size="md"
+                onClick={() => setStringFrag(addCodeFrag("-", stringFrag))}
+              >
+                -
+              </button>
+            </div>
+            <button variant="success" size="sm" onClick={translateCode}>
+              Enter
+            </button>
+          </div>
+          <span>Current pattern: {stringFrag}</span>
+          <span>
+            Current character:
+            {Object.keys(morseData, stringFrag).find(
+              (key) => morseData[key] === stringFrag
+            )}
+          </span>
+          <button onClick={handleRegisterAddress}>Continue</button>
+          <Alert variant="warning">{errorMessage}</Alert>
+        </div>
+      )}
     </div>
   );
 }
