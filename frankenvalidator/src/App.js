@@ -175,7 +175,6 @@ function App() {
         </div>
       )}
       {view === "phone-number" && <div>
-        {/* Add color based phone picker */}
         <h4>Please Input your phone number to proceed</h4>
       <input
         id="slider"
@@ -193,7 +192,6 @@ function App() {
         <button onClick={handleRegisterPhone}>Continue</button>
         </div>}
         {view === "address" && <div>
-          {/* Add Morse code input to register address */}
           <textarea disabled value={fullString}></textarea>
       <div className="button-wrapper">
         <div className="input-wrapper">
