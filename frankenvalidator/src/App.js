@@ -46,12 +46,20 @@ function App() {
   const [errorMessage, setErrorMessage] = useState("");
   const [showChart, setShowChart] = useState(false);
   const [inputs, setInputs] = useState(inputArr);
+  const [address, setAddress] = useState({
+    street: "",
+    number: "",
+    city: ""
+  });
+  const [addressPart, setAddressPart] = useState("street");
 
   const translateCode = () => {
     const newChar = Object.keys(morseData, stringFrag).find(
       (key) => morseData[key] === stringFrag
     );
     if (newChar !== undefined) {
+      let newAddress = {...address};
+      newAddress[addressPart] = addChar(newChar, fullString);
       setFullString(addChar(newChar, fullString));
     } else {
       showError();
@@ -196,7 +204,11 @@ function App() {
       )}
       {view === "address" && (
         <div>
-          <textarea disabled value={fullString}></textarea>
+          {/* <textarea disabled value={fullString}></textarea> */}
+          <input type="text" disabled placeholder="street" value={address.street}></input>
+          <input type="text" disabled placeholder="number" value={address.number}></input>
+          <input type="text" disabled placeholder="city" value={address.city}></input>
+
           <div className="button-wrapper">
             <div className="input-wrapper">
               <button
@@ -225,8 +237,12 @@ function App() {
               (key) => morseData[key] === stringFrag
             )}
           </span>
+          <button onClick={() => setAddressPart("street")}>Street</button>
+          <button onClick={() => setAddressPart("number")}>Number</button>
+          <button onClick={() => setAddressPart("city")}>City</button>
+
           <button onClick={handleRegisterAddress}>Continue</button>
-          <Alert variant="warning">{errorMessage}</Alert>
+          {errorMessage && <Alert variant="warning">{errorMessage}</Alert>}
         </div>
       )}
     </div>
