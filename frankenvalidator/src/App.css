@@ -8,3 +8,11 @@ li {
 .complete {
   color: gray;
 }
+
+#address-inputs { 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 auto;
+  width: 400px;
+}

@@ -49,7 +49,7 @@ function App() {
   const [address, setAddress] = useState({
     street: "",
     number: "",
-    city: ""
+    city: "",
   });
   const [addressPart, setAddressPart] = useState("street");
 
@@ -58,9 +58,9 @@ function App() {
       (key) => morseData[key] === stringFrag
     );
     if (newChar !== undefined) {
-      let newAddress = {...address};
+      let newAddress = { ...address };
       newAddress[addressPart] = addChar(newChar, fullString);
-      setAddress(newAddress)
+      setAddress(newAddress);
       setFullString(addChar(newChar, fullString));
     } else {
       showError();
@@ -137,8 +137,8 @@ function App() {
     // setInputs(changes);
     return changes;
   }
-  
-  const unFocus = (hiddenInput) => {
+
+  const unFocus = () => {
     console.log(hiddenInput);
     hiddenInput.focus();
   };
@@ -160,8 +160,6 @@ function App() {
     const mountArray = shuffleInputs(inputArr);
     setInputs(mountArray);
   }, []);
-
-
 
   return (
     <div className="App">
@@ -207,9 +205,40 @@ function App() {
       {view === "address" && (
         <div>
           {/* <textarea disabled value={fullString}></textarea> */}
-          <input type="text" disabled placeholder="street" value={address.street}></input>
-          <input type="text" disabled placeholder="number" value={address.number}></input>
-          <input type="text" disabled placeholder="city" value={address.city}></input>
+          <div id="address-inputs">
+            <div className="button-input-combo">
+              <input
+                type="text"
+                disabled
+                placeholder="street"
+                value={address.street}
+              ></input>
+              <button onClick={() => setAddressPart("street")}>
+                Input Street
+              </button>
+            </div>
+            <div className="button-input-combo">
+              <input
+                type="text"
+                disabled
+                placeholder="number"
+                value={address.number}
+              ></input>
+              <button onClick={() => setAddressPart("number")}>
+                Input Apt/House Number
+              </button>
+            </div>
+            <div className="button-input-combo">
+              {" "}
+              <input
+                type="text"
+                disabled
+                placeholder="city"
+                value={address.city}
+              ></input>
+              <button onClick={() => setAddressPart("city")}>Input City</button>
+            </div>
+          </div>
 
           <div className="button-wrapper">
             <div className="input-wrapper">
@@ -239,10 +268,6 @@ function App() {
               (key) => morseData[key] === stringFrag
             )}
           </span>
-          <button onClick={() => setAddressPart("street")}>Street</button>
-          <button onClick={() => setAddressPart("number")}>Number</button>
-          <button onClick={() => setAddressPart("city")}>City</button>
-
           <button onClick={handleRegisterAddress}>Continue</button>
           {errorMessage && <Alert variant="warning">{errorMessage}</Alert>}
         </div>
