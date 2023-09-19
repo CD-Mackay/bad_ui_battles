@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  padding: 10px;
 }
 
 li {
@@ -15,4 +16,5 @@ li {
   align-items: flex-start;
   margin: 0 auto;
   width: 400px;
+  margin-bottom: 20px;
 }
