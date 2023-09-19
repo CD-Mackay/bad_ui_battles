@@ -46,4 +46,5 @@ const addChar = (newChar, fullString) => {
   return stringCopy;
 };
 
+
 export { validatePass, addCodeFrag, addChar }

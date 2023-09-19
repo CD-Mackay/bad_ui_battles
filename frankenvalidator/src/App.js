@@ -60,6 +60,7 @@ function App() {
     if (newChar !== undefined) {
       let newAddress = {...address};
       newAddress[addressPart] = addChar(newChar, fullString);
+      setAddress(newAddress)
       setFullString(addChar(newChar, fullString));
     } else {
       showError();
@@ -107,12 +108,6 @@ function App() {
     });
   };
 
-  const unFocus = () => {
-    // inputRef.current.blur();
-    console.log(hiddenInput);
-    hiddenInput.focus();
-  };
-
   const shuffleInputs = (array) => {
     const newArr = [...array];
     for (let i = newArr.length - 1; i > 0; i--) {
@@ -135,6 +130,19 @@ function App() {
     }));
   };
 
+  function handleShuffle(e, inputs) {
+    handleChange(e);
+    unFocus();
+    const changes = shuffleInputs([...inputs]);
+    // setInputs(changes);
+    return changes;
+  }
+  
+  const unFocus = (hiddenInput) => {
+    console.log(hiddenInput);
+    hiddenInput.focus();
+  };
+
   const handlePhoneChange = (e) => {
     setPhone(e.target.value);
   };
@@ -153,13 +161,7 @@ function App() {
     setInputs(mountArray);
   }, []);
 
-  function handleShuffle(e) {
-    handleChange(e);
-    unFocus();
-    const changes = shuffleInputs([...inputs]);
-    setInputs(changes);
-    console.log("everyday I'm shufflin");
-  }
+
 
   return (
     <div className="App">
@@ -170,7 +172,7 @@ function App() {
               <Input
                 type={element.type}
                 inputRef={inputRef}
-                onChange={(e) => handleShuffle(e)}
+                onChange={(e) => setInputs(handleShuffle(e, inputs))}
                 key={element.key}
                 name={element.field}
                 inputValue={inputValue}
