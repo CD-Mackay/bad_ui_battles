@@ -49,7 +49,7 @@ function App() {
   const [address, setAddress] = useState({
     street: "",
     number: "",
-    city: ""
+    city: "",
   });
   const [addressPart, setAddressPart] = useState("street");
 
@@ -58,8 +58,9 @@ function App() {
       (key) => morseData[key] === stringFrag
     );
     if (newChar !== undefined) {
-      let newAddress = {...address};
+      let newAddress = { ...address };
       newAddress[addressPart] = addChar(newChar, fullString);
+      setAddress(newAddress);
       setFullString(addChar(newChar, fullString));
     } else {
       showError();
@@ -107,12 +108,6 @@ function App() {
     });
   };
 
-  const unFocus = () => {
-    // inputRef.current.blur();
-    console.log(hiddenInput);
-    hiddenInput.focus();
-  };
-
   const shuffleInputs = (array) => {
     const newArr = [...array];
     for (let i = newArr.length - 1; i > 0; i--) {
@@ -135,6 +130,19 @@ function App() {
     }));
   };
 
+  function handleShuffle(e, inputs) {
+    handleChange(e);
+    unFocus();
+    const changes = shuffleInputs([...inputs]);
+    // setInputs(changes);
+    return changes;
+  }
+
+  const unFocus = () => {
+    console.log(hiddenInput);
+    hiddenInput.focus();
+  };
+
   const handlePhoneChange = (e) => {
     setPhone(e.target.value);
   };
@@ -153,14 +161,6 @@ function App() {
     setInputs(mountArray);
   }, []);
 
-  function handleShuffle(e) {
-    handleChange(e);
-    unFocus();
-    const changes = shuffleInputs([...inputs]);
-    setInputs(changes);
-    console.log("everyday I'm shufflin");
-  }
-
   return (
     <div className="App">
       {view === "username" && (
@@ -170,7 +170,7 @@ function App() {
               <Input
                 type={element.type}
                 inputRef={inputRef}
-                onChange={(e) => handleShuffle(e)}
+                onChange={(e) => setInputs(handleShuffle(e, inputs))}
                 key={element.key}
                 name={element.field}
                 inputValue={inputValue}
@@ -205,9 +205,40 @@ function App() {
       {view === "address" && (
         <div>
           {/* <textarea disabled value={fullString}></textarea> */}
-          <input type="text" disabled placeholder="street" value={address.street}></input>
-          <input type="text" disabled placeholder="number" value={address.number}></input>
-          <input type="text" disabled placeholder="city" value={address.city}></input>
+          <div id="address-inputs">
+            <div className="button-input-combo">
+              <input
+                type="text"
+                disabled
+                placeholder="street"
+                value={address.street}
+              ></input>
+              <button onClick={() => setAddressPart("street")}>
+                Input Street
+              </button>
+            </div>
+            <div className="button-input-combo">
+              <input
+                type="text"
+                disabled
+                placeholder="number"
+                value={address.number}
+              ></input>
+              <button onClick={() => setAddressPart("number")}>
+                Input Apt/House Number
+              </button>
+            </div>
+            <div className="button-input-combo">
+              {" "}
+              <input
+                type="text"
+                disabled
+                placeholder="city"
+                value={address.city}
+              ></input>
+              <button onClick={() => setAddressPart("city")}>Input City</button>
+            </div>
+          </div>
 
           <div className="button-wrapper">
             <div className="input-wrapper">
@@ -237,10 +268,6 @@ function App() {
               (key) => morseData[key] === stringFrag
             )}
           </span>
-          <button onClick={() => setAddressPart("street")}>Street</button>
-          <button onClick={() => setAddressPart("number")}>Number</button>
-          <button onClick={() => setAddressPart("city")}>City</button>
-
           <button onClick={handleRegisterAddress}>Continue</button>
           {errorMessage && <Alert variant="warning">{errorMessage}</Alert>}
         </div>
