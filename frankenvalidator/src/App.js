@@ -2,32 +2,12 @@ import "./App.css";
 import { useEffect, useState, useRef } from "react";
 import Input from "./Components/Input/Input";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
-import { morseData } from "./data";
+import { morseData, inputArr } from "./data";
 import { validatePass, addCodeFrag, addChar } from "./helpers";
 import { Alert } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 
 function App() {
-  let inputArr = [
-    {
-      type: "text",
-      key: 1,
-      field: "username",
-      label: "username",
-    },
-    {
-      type: "password",
-      key: 2,
-      field: "password",
-      label: "password",
-    },
-    {
-      type: "password",
-      key: 3,
-      field: "passConfirm",
-      label: "confirm password",
-    },
-  ];
 
   // State Declarations
   const [inputValue, setInputValue] = useState({

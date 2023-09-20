@@ -94,4 +94,25 @@ const morseArr = [
   [")", "-.--.-"],
 ];
 
-export { morseArr, morseData }
+let inputArr = [
+  {
+    type: "text",
+    key: 1,
+    field: "username",
+    label: "username",
+  },
+  {
+    type: "password",
+    key: 2,
+    field: "password",
+    label: "password",
+  },
+  {
+    type: "password",
+    key: 3,
+    field: "passConfirm",
+    label: "confirm password",
+  },
+];
+
+export { morseArr, morseData, inputArr }
