@@ -105,7 +105,6 @@ function App() {
   const handleChange = (e) => {
     e.preventDefault();
     const { value, name } = e.target;
-    console.log("value", value, "name", name);
     if (name === "password") {
       setError(validatePass(value, error));
     }
@@ -123,7 +122,6 @@ function App() {
   }
 
   const unFocus = () => {
-    console.log(hiddenInput);
     hiddenInput.focus();
   };
   // Input Phone number
