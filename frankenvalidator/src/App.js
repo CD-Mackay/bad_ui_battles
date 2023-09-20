@@ -36,7 +36,7 @@ function App() {
     passConfirm: "",
   });
   const [phone, setPhone] = useState("5555555555");
-  const [view, setView] = useState("address");
+  const [view, setView] = useState("username");
   const [error, setError] = useState({
     "password must contain a number": false,
   });

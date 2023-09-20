@@ -18,3 +18,12 @@ li {
   width: 400px;
   margin-bottom: 20px;
 }
+
+#hidden-input {
+  position: fixed;
+  bottom: 0;
+  width: 1px;
+  height: 1px;
+  color: white;
+  border: none;
+}
