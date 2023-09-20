@@ -2,7 +2,7 @@ import "./App.css";
 import { useEffect, useState, useRef } from "react";
 import Input from "./Components/Input/Input";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
-import { morseArr, morseData } from "./data";
+import { morseData } from "./data";
 import { validatePass, addCodeFrag, addChar } from "./helpers";
 import { Alert } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
@@ -44,7 +44,7 @@ function App() {
   const [stringFrag, setStringFrag] = useState("");
   const [fullString, setFullString] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [showChart, setShowChart] = useState(false);
+  // const [showChart, setShowChart] = useState(false);
   const [inputs, setInputs] = useState(inputArr);
   const [address, setAddress] = useState({
     street: "",
@@ -121,7 +121,6 @@ function App() {
     const { value, name } = e.target;
     console.log("value", value, "name", name);
     if (name === "password") {
-      // validatePass(value);
       setError(validatePass(value, error));
     }
     setInputValue((prevNote) => ({
@@ -134,7 +133,6 @@ function App() {
     handleChange(e);
     unFocus();
     const changes = shuffleInputs([...inputs]);
-    // setInputs(changes);
     return changes;
   }
 
@@ -204,7 +202,6 @@ function App() {
       )}
       {view === "address" && (
         <div>
-          {/* <textarea disabled value={fullString}></textarea> */}
           <div id="address-inputs">
             <div className="button-input-combo">
               <input
