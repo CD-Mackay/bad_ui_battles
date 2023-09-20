@@ -33,6 +33,8 @@ function App() {
   });
   const [addressPart, setAddressPart] = useState("street");
 
+  // Functions
+  // Address Input
   const translateCode = () => {
     const newChar = Object.keys(morseData, stringFrag).find(
       (key) => morseData[key] === stringFrag
@@ -58,6 +60,9 @@ function App() {
   const inputRef = useRef(null);
   const hiddenInput = document.getElementById("hidden-input");
 
+
+
+  // Continuing registration process
   const handleRegisterPhone = () => {
     setView("address");
   };
@@ -65,7 +70,7 @@ function App() {
   const handleRegisterAddress = () => {
     setView("success");
   };
-
+  // Password validation
   const showReqs = () => {
     let array = [];
     Object.keys(error).forEach(function (key, index) {
@@ -96,6 +101,7 @@ function App() {
     }
     return newArr;
   };
+
   const handleChange = (e) => {
     e.preventDefault();
     const { value, name } = e.target;
@@ -120,11 +126,12 @@ function App() {
     console.log(hiddenInput);
     hiddenInput.focus();
   };
-
+  // Input Phone number
   const handlePhoneChange = (e) => {
     setPhone(e.target.value);
   };
 
+  
   const handleRegisterUsername = () => {
     if (
       inputValue.password === inputValue.passConfirm &&
